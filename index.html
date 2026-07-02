@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ópticas Losada</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #fff; }
+
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; border-bottom: 0.5px solid #e5e0d8; background: #fff; position: sticky; top: 0; z-index: 10; }
+  .nav-logo img { height: 38px; width: auto; display: block; }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a { font-size: 13px; color: #5a5045; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color .2s; }
+  .nav-links a:hover { color: #1a1a1a; }
+  .nav-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-nav { font-size: 12px; padding: 7px 18px; border: 0.5px solid #1a1a1a; border-radius: 2px; background: transparent; color: #1a1a1a; cursor: pointer; letter-spacing: 0.05em; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+  .btn-nav:hover { background: #f5f0e8; }
+  .icon-btn { font-size: 19px; color: #5a5045; cursor: pointer; background: none; border: none; }
+
+  .banner { background: #1a1a2e; color: #e8e0d4; text-align: center; font-size: 12px; padding: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .banner span { color: #c9a96e; font-weight: 500; }
+
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 540px; }
+  .hero-text { background: #f5f0e8; display: flex; flex-direction: column; justify-content: center; padding: 4rem 4rem; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #8a7a65; margin-bottom: 1rem; font-weight: 500; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 400; line-height: 1.1; color: #1a1a1a; margin-bottom: 1.5rem; }
+  .hero-title em { font-style: italic; color: #6b5e4c; }
+  .hero-sub { font-size: 15px; color: #5a5045; line-height: 1.7; max-width: 380px; margin-bottom: 2rem; font-weight: 300; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { padding: 13px 30px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Inter', sans-serif; background: #1a1a2e; color: #f5f0e8; border: none; border-radius: 2px; cursor: pointer; font-weight: 400; }
+  .btn-primary:hover { background: #2a2a4e; }
+  .btn-secondary { padding: 13px 30px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Inter', sans-serif; background: transparent; color: #1a1a2e; border: 0.5px solid #1a1a2e; border-radius: 2px; cursor: pointer; font-weight: 400; }
+  .btn-secondary:hover { background: rgba(26,26,46,0.06); }
+
+  .hero-image { background: #1a1a2e; display: flex; align-items: center; justify-content: center; }
+  .hero-image-inner { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+  .hero-price { font-family: 'Playfair Display', serif; font-size: 14px; color: #c9a96e; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .perks { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 0.5px solid #e5e0d8; }
+  .perk { padding: 1.4rem 1.5rem; border-right: 0.5px solid #e5e0d8; display: flex; align-items: center; gap: 10px; }
+  .perk:last-child { border-right: none; }
+  .perk svg { flex-shrink: 0; color: #8a7a65; }
+  .perk-text { font-size: 12.5px; color: #5a5045; letter-spacing: 0.02em; }
+
+  .section { padding: 3.5rem 2rem; }
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.75rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 400; color: #1a1a1a; }
+  .section-link { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #5a5045; text-decoration: none; border-bottom: 0.5px solid #1a1a1a; padding-bottom: 2px; }
+
+  .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #e5e0d8; border: 0.5px solid #e5e0d8; }
+  .product { background: #fff; padding: 1.6rem; cursor: pointer; transition: background .15s; position: relative; }
+  .product:hover { background: #faf7f2; }
+  .product-badge { position: absolute; top: 1rem; left: 1rem; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: #1a1a2e; color: #e8e0d4; padding: 3px 9px; }
+  .product-frame { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: #fafafa; }
+  .product-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 400; margin-bottom: 2px; }
+  .product-color { font-size: 12px; color: #8a8a8a; margin-bottom: 6px; }
+  .product-price { font-size: 13px; font-weight: 500; color: #1a1a1a; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split-panel { padding: 3.5rem; display: flex; flex-direction: column; justify-content: flex-end; min-height: 380px; }
+  .split-a { background: #2d3561; }
+  .split-b { background: #f0ebe0; }
+  .split-eyebrow { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 500; }
+  .split-eyebrow.light { color: #8a9fd4; }
+  .split-eyebrow.dark { color: #8a7a65; }
+  .split-heading { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; line-height: 1.15; margin-bottom: 1.4rem; }
+  .split-heading.light { color: #f0ebe0; }
+  .split-heading.dark { color: #1a1a1a; }
+  .split-cta { display: inline-block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid currentColor; padding-bottom: 2px; cursor: pointer; background: none; border-left: none; border-top: none; border-right: none; font-family: 'Inter', sans-serif; width: fit-content; }
+  .split-cta.light { color: #c9a96e; }
+  .split-cta.dark { color: #3d3d60; }
+
+  .footer { background: #1a1a2e; color: #8a9fd4; padding: 3rem 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; }
+  .footer-logo img { height: 32px; width: auto; margin-bottom: 0.9rem; filter: brightness(0) invert(1) opacity(0.88); display: block; }
+  .footer-tagline { font-size: 13px; line-height: 1.7; font-weight: 300; }
+  .footer-col-title { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a96e; margin-bottom: 1rem; font-weight: 500; }
+  .footer-link { display: block; font-size: 13px; color: #8a9fd4; text-decoration: none; margin-bottom: 0.55rem; font-weight: 300; }
+  .footer-link:hover { color: #e8e0d4; }
+
+  @media (max-width: 900px) {
+    .hero, .split, .products, .perks { grid-template-columns: 1fr 1fr; }
+    .footer { grid-template-columns: 1fr 1fr; }
+    .hero-title { font-size: 38px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero, .split, .products, .perks, .footer { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="banner"><span>Nuevo</span> — Series Aero: ultraligero, desde $95 · Envío gratis · Devoluciones en 30 días</div>
+
+  <nav class="nav">
+    <div class="nav-logo"><img src="logo-losada.png" alt="Ópticas Losada"></div>
+    <div class="nav-links">
+      <a href="#">Anteojos</a>
+      <a href="#">Lentes de sol</a>
+      <a href="#">Contactos</a>
+      <a href="#">Examen visual</a>
+      <a href="#">Colecciones</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-nav">Quiz de estilo</button>
+      <button class="icon-btn" aria-label="Buscar">&#128269;</button>
+      <button class="icon-btn" aria-label="Carrito">&#128092;</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Nueva colección — Temporada 2026</div>
+      <h1 class="hero-title">Claridad en<br>cada <em>detalle</em></h1>
+      <p class="hero-sub">Lentes de prescripción de alta calidad desde $95. Diseño pensado para durar, con materiales que importan.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary">Ver colección</button>
+        <button class="btn-secondary">Quiz de estilo</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-inner">
+        <svg width="280" height="120" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="25" width="110" height="70" rx="20" fill="none" stroke="#c9a96e" stroke-width="5"/>
+          <rect x="160" y="25" width="110" height="70" rx="20" fill="none" stroke="#c9a96e" stroke-width="5"/>
+          <line x1="120" y1="60" x2="160" y2="60" stroke="#c9a96e" stroke-width="3"/>
+          <line x1="5" y1="40" x2="10" y2="40" stroke="#c9a96e" stroke-width="3"/>
+          <line x1="270" y1="40" x2="275" y2="40" stroke="#c9a96e" stroke-width="3"/>
+          <rect x="20" y="35" width="90" height="50" rx="14" fill="rgba(201,169,110,0.08)"/>
+          <rect x="170" y="35" width="90" height="50" rx="14" fill="rgba(201,169,110,0.08)"/>
+        </svg>
+        <div class="hero-price">Desde $95 · Incluye lentes recetados</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="perks">
+    <div class="perk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="6" width="14" height="10" rx="1"/><path d="M15 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+      <span class="perk-text">Envío gratuito</span>
+    </div>
+    <div class="perk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+      <span class="perk-text">30 días para devolver</span>
+    </div>
+    <div class="perk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+      <span class="perk-text">Prueba virtual en la app</span>
+    </div>
+    <div class="perk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
+      <span class="perk-text">Seguro de visión aceptado</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">Nuevos arrivals</h2>
+      <a href="#" class="section-link">Ver todos</a>
+    </div>
+    <div class="products">
+      <div class="product">
+        <div class="product-badge">Nuevo</div>
+        <div class="product-frame">
+          <svg viewBox="0 0 180 80" width="150" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="15" width="75" height="50" rx="14" fill="none" stroke="#2d3561" stroke-width="3.5"/>
+            <rect x="100" y="15" width="75" height="50" rx="14" fill="none" stroke="#2d3561" stroke-width="3.5"/>
+            <line x1="80" y1="40" x2="100" y2="40" stroke="#2d3561" stroke-width="2.5"/>
+            <line x1="0" y1="28" x2="5" y2="28" stroke="#2d3561" stroke-width="2"/>
+            <line x1="175" y1="28" x2="180" y2="28" stroke="#2d3561" stroke-width="2"/>
+            <rect x="12" y="22" width="61" height="36" rx="10" fill="rgba(45,53,97,0.07)"/>
+            <rect x="107" y="22" width="61" height="36" rx="10" fill="rgba(45,53,97,0.07)"/>
+          </svg>
+        </div>
+        <div class="product-name">Boaz</div>
+        <div class="product-color">Azul marino · 3 colores</div>
+        <div class="product-price">$95</div>
+      </div>
+      <div class="product">
+        <div class="product-frame">
+          <svg viewBox="0 0 180 80" width="150" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="20" width="78" height="42" rx="8" fill="none" stroke="#6b4c3b" stroke-width="3.5"/>
+            <rect x="97" y="20" width="78" height="42" rx="8" fill="none" stroke="#6b4c3b" stroke-width="3.5"/>
+            <line x1="83" y1="41" x2="97" y2="41" stroke="#6b4c3b" stroke-width="2.5"/>
+            <line x1="0" y1="30" x2="5" y2="30" stroke="#6b4c3b" stroke-width="2"/>
+            <line x1="175" y1="30" x2="180" y2="30" stroke="#6b4c3b" stroke-width="2"/>
+            <rect x="12" y="26" width="64" height="30" rx="5" fill="rgba(107,76,59,0.1)"/>
+            <rect x="104" y="26" width="64" height="30" rx="5" fill="rgba(107,76,59,0.1)"/>
+          </svg>
+        </div>
+        <div class="product-name">Franny</div>
+        <div class="product-color">Tortoise toffee · 4 colores</div>
+        <div class="product-price">$95</div>
+      </div>
+      <div class="product">
+        <div class="product-badge">Bestseller</div>
+        <div class="product-frame">
+          <svg viewBox="0 0 180 80" width="150" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="44" cy="41" rx="39" ry="26" fill="none" stroke="#3d3d3d" stroke-width="3.5"/>
+            <ellipse cx="136" cy="41" rx="39" ry="26" fill="none" stroke="#3d3d3d" stroke-width="3.5"/>
+            <line x1="83" y1="41" x2="97" y1="41" stroke="#3d3d3d" stroke-width="2.5"/>
+            <line x1="0" y1="31" x2="5" y1="31" stroke="#3d3d3d" stroke-width="2"/>
+            <line x1="175" y1="31" x2="180" y1="31" stroke="#3d3d3d" stroke-width="2"/>
+            <ellipse cx="44" cy="41" rx="30" ry="18" fill="rgba(61,61,61,0.07)"/>
+            <ellipse cx="136" cy="41" rx="30" ry="18" fill="rgba(61,61,61,0.07)"/>
+          </svg>
+        </div>
+        <div class="product-name">Carlton</div>
+        <div class="product-color">Negro jet · 6 colores</div>
+        <div class="product-price">$95</div>
+      </div>
+      <div class="product">
+        <div class="product-frame">
+          <svg viewBox="0 0 180 80" width="150" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="18" width="80" height="44" rx="22" fill="none" stroke="#5c7a3e" stroke-width="3.5"/>
+            <rect x="95" y="18" width="80" height="44" rx="22" fill="none" stroke="#5c7a3e" stroke-width="3.5"/>
+            <line x1="85" y1="40" x2="95" y2="40" stroke="#5c7a3e" stroke-width="2.5"/>
+            <line x1="0" y1="30" x2="5" y2="30" stroke="#5c7a3e" stroke-width="2"/>
+            <line x1="175" y1="30" x2="180" y2="30" stroke="#5c7a3e" stroke-width="2"/>
+            <rect x="13" y="26" width="64" height="28" rx="16" fill="rgba(92,122,62,0.1)"/>
+            <rect x="103" y="26" width="64" height="28" rx="16" fill="rgba(92,122,62,0.1)"/>
+          </svg>
+        </div>
+        <div class="product-name">Simone</div>
+        <div class="product-color">Verde botella · 3 colores</div>
+        <div class="product-price">$95</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="split-panel split-a">
+      <div class="split-eyebrow light">Serie Aero</div>
+      <div class="split-heading light">Ultra-<em style="font-style:italic">ligero</em>,<br>hecho en Italia</div>
+      <button class="split-cta light">Ver Serie Aero →</button>
+    </div>
+    <div class="split-panel split-b">
+      <div class="split-eyebrow dark">Lentes de sol</div>
+      <div class="split-heading dark">El verano<br>en <em style="font-style:italic;color:#6b4c3b">foco</em></div>
+      <button class="split-cta dark">Ver lentes de sol →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="footer-logo"><img src="logo-losada.png" alt="Ópticas Losada"></div>
+      <p class="footer-tagline">Anteojos de diseño a precios<br>que no necesitan receta para leerse.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Comprar</div>
+      <a href="#" class="footer-link">Anteojos</a>
+      <a href="#" class="footer-link">Lentes de sol</a>
+      <a href="#" class="footer-link">Contactos</a>
+      <a href="#" class="footer-link">Accesorios</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Servicios</div>
+      <a href="#" class="footer-link">Prueba virtual</a>
+      <a href="#" class="footer-link">Examen visual</a>
+      <a href="#" class="footer-link">Seguro de visión</a>
+      <a href="#" class="footer-link">Quiz de estilo</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Nosotros</div>
+      <a href="#" class="footer-link">Nuestra historia</a>
+      <a href="#" class="footer-link">Buy a Pair, Give a Pair</a>
+      <a href="#" class="footer-link">Tiendas</a>
+      <a href="#" class="footer-link">Trabaja con nosotros</a>
+    </div>
+  </div>
+
+</body>
+</html>
