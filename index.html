@@ -5,271 +5,370 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ópticas Losada</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #fff; }
-
-  .nav { display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; border-bottom: 0.5px solid #e5e0d8; background: #fff; position: sticky; top: 0; z-index: 10; }
-  .nav-logo img { height: 38px; width: auto; display: block; }
-  .nav-links { display: flex; gap: 1.5rem; }
-  .nav-links a { font-size: 13px; color: #5a5045; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color .2s; }
-  .nav-links a:hover { color: #1a1a1a; }
-  .nav-actions { display: flex; gap: 1rem; align-items: center; }
-  .btn-nav { font-size: 12px; padding: 7px 18px; border: 0.5px solid #1a1a1a; border-radius: 2px; background: transparent; color: #1a1a1a; cursor: pointer; letter-spacing: 0.05em; text-transform: uppercase; font-family: 'Inter', sans-serif; }
-  .btn-nav:hover { background: #f5f0e8; }
-  .icon-btn { font-size: 19px; color: #5a5045; cursor: pointer; background: none; border: none; }
-
-  .banner { background: #1a1a2e; color: #e8e0d4; text-align: center; font-size: 12px; padding: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
-  .banner span { color: #c9a96e; font-weight: 500; }
-
-  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 540px; }
-  .hero-text { background: #f5f0e8; display: flex; flex-direction: column; justify-content: center; padding: 4rem 4rem; }
-  .hero-eyebrow { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #8a7a65; margin-bottom: 1rem; font-weight: 500; }
-  .hero-title { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 400; line-height: 1.1; color: #1a1a1a; margin-bottom: 1.5rem; }
-  .hero-title em { font-style: italic; color: #6b5e4c; }
-  .hero-sub { font-size: 15px; color: #5a5045; line-height: 1.7; max-width: 380px; margin-bottom: 2rem; font-weight: 300; }
-  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary { padding: 13px 30px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Inter', sans-serif; background: #1a1a2e; color: #f5f0e8; border: none; border-radius: 2px; cursor: pointer; font-weight: 400; }
-  .btn-primary:hover { background: #2a2a4e; }
-  .btn-secondary { padding: 13px 30px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Inter', sans-serif; background: transparent; color: #1a1a2e; border: 0.5px solid #1a1a2e; border-radius: 2px; cursor: pointer; font-weight: 400; }
-  .btn-secondary:hover { background: rgba(26,26,46,0.06); }
-
-  .hero-image { background: #1a1a2e; display: flex; align-items: center; justify-content: center; }
-  .hero-image-inner { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-  .hero-price { font-family: 'Playfair Display', serif; font-size: 14px; color: #c9a96e; letter-spacing: 0.1em; text-transform: uppercase; }
-
-  .perks { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 0.5px solid #e5e0d8; }
-  .perk { padding: 1.4rem 1.5rem; border-right: 0.5px solid #e5e0d8; display: flex; align-items: center; gap: 10px; }
-  .perk:last-child { border-right: none; }
-  .perk svg { flex-shrink: 0; color: #8a7a65; }
-  .perk-text { font-size: 12.5px; color: #5a5045; letter-spacing: 0.02em; }
-
-  .section { padding: 3.5rem 2rem; }
-  .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.75rem; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 400; color: #1a1a1a; }
-  .section-link { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #5a5045; text-decoration: none; border-bottom: 0.5px solid #1a1a1a; padding-bottom: 2px; }
-
-  .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #e5e0d8; border: 0.5px solid #e5e0d8; }
-  .product { background: #fff; padding: 1.6rem; cursor: pointer; transition: background .15s; position: relative; }
-  .product:hover { background: #faf7f2; }
-  .product-badge { position: absolute; top: 1rem; left: 1rem; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: #1a1a2e; color: #e8e0d4; padding: 3px 9px; }
-  .product-frame { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: #fafafa; }
-  .product-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 400; margin-bottom: 2px; }
-  .product-color { font-size: 12px; color: #8a8a8a; margin-bottom: 6px; }
-  .product-price { font-size: 13px; font-weight: 500; color: #1a1a1a; }
-
-  .split { display: grid; grid-template-columns: 1fr 1fr; }
-  .split-panel { padding: 3.5rem; display: flex; flex-direction: column; justify-content: flex-end; min-height: 380px; }
-  .split-a { background: #2d3561; }
-  .split-b { background: #f0ebe0; }
-  .split-eyebrow { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 500; }
-  .split-eyebrow.light { color: #8a9fd4; }
-  .split-eyebrow.dark { color: #8a7a65; }
-  .split-heading { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 400; line-height: 1.15; margin-bottom: 1.4rem; }
-  .split-heading.light { color: #f0ebe0; }
-  .split-heading.dark { color: #1a1a1a; }
-  .split-cta { display: inline-block; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid currentColor; padding-bottom: 2px; cursor: pointer; background: none; border-left: none; border-top: none; border-right: none; font-family: 'Inter', sans-serif; width: fit-content; }
-  .split-cta.light { color: #c9a96e; }
-  .split-cta.dark { color: #3d3d60; }
-
-  .footer { background: #1a1a2e; color: #8a9fd4; padding: 3rem 2rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; }
-  .footer-logo img { height: 32px; width: auto; margin-bottom: 0.9rem; filter: brightness(0) invert(1) opacity(0.88); display: block; }
-  .footer-tagline { font-size: 13px; line-height: 1.7; font-weight: 300; }
-  .footer-col-title { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a96e; margin-bottom: 1rem; font-weight: 500; }
-  .footer-link { display: block; font-size: 13px; color: #8a9fd4; text-decoration: none; margin-bottom: 0.55rem; font-weight: 300; }
-  .footer-link:hover { color: #e8e0d4; }
-
-  @media (max-width: 900px) {
-    .hero, .split, .products, .perks { grid-template-columns: 1fr 1fr; }
-    .footer { grid-template-columns: 1fr 1fr; }
-    .hero-title { font-size: 38px; }
-  }
-  @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .hero, .split, .products, .perks, .footer { grid-template-columns: 1fr; }
-  }
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;color:#1a1a1a;background:#fff}
+.page{display:none}.page.active{display:block}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;border-bottom:.5px solid #e5e0d8;background:#fff;position:sticky;top:0;z-index:10}
+.nav-logo{height:34px;cursor:pointer}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:13px;color:#5a5045;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.btn-nav{font-size:12px;padding:7px 18px;border:.5px solid #1a1a1a;border-radius:2px;background:transparent;color:#1a1a1a;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;font-family:'Inter',sans-serif}
+.banner{background:#1a1a2e;color:#e8e0d4;text-align:center;font-size:12px;padding:9px;letter-spacing:.08em;text-transform:uppercase}
+.banner span{color:#c9a96e;font-weight:500}
+.btn-primary{padding:12px 26px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#1a1a2e;color:#f5f0e8;border:none;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif}
+.btn-secondary{padding:12px 26px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:#1a1a2e;border:.5px solid #1a1a2e;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:460px}
+.hero-text{background:#f5f0e8;display:flex;flex-direction:column;justify-content:center;padding:3.5rem}
+.eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a7a65;margin-bottom:.8rem;font-weight:500}
+.hero-title{font-family:'Playfair Display',serif;font-size:44px;font-weight:400;line-height:1.1;margin-bottom:1.1rem}
+.hero-title em{font-style:italic;color:#6b5e4c}
+.hero-sub{font-size:14px;color:#5a5045;line-height:1.7;max-width:340px;margin-bottom:1.75rem;font-weight:300}
+.hero-ctas{display:flex;gap:12px}
+.hero-img{background:#1a1a2e;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.25rem}
+.hero-price{font-family:'Playfair Display',serif;font-size:13px;color:#c9a96e;letter-spacing:.1em;text-transform:uppercase}
+.perks{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:.5px solid #e5e0d8}
+.perk{padding:1.1rem 1rem;border-right:.5px solid #e5e0d8;text-align:center;font-size:11.5px;color:#5a5045}
+.perk:last-child{border-right:none}
+.section{padding:2.5rem 2rem}
+.section-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.25rem}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:400}
+.section-link{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5a5045;text-decoration:none;border-bottom:.5px solid #1a1a1a;padding-bottom:2px;cursor:pointer}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e5e0d8;border:.5px solid #e5e0d8}
+.product-card{background:#fff;padding:1.1rem;position:relative;cursor:pointer;transition:background .15s}
+.product-card:hover{background:#faf7f2}
+.product-badge{position:absolute;top:.75rem;left:.75rem;font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:#1a1a2e;color:#e8e0d4;padding:3px 7px}
+.product-frame{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;margin-bottom:.6rem;background:#fafafa}
+.product-name{font-family:'Playfair Display',serif;font-size:14px}
+.product-color{font-size:10.5px;color:#8a8a8a;margin-bottom:3px}
+.product-price{font-size:11.5px;font-weight:500}
+.aero-banner{background:#2d3561;padding:2.5rem 2rem;color:#fff}
+.aero-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;margin-bottom:.5rem}
+.aero-title em{font-style:italic;color:#c9a96e}
+.aero-sub{font-size:13px;color:#c5cce8;line-height:1.6;max-width:440px;font-weight:300;margin-bottom:1rem}
+.aero-cta{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:#c9a96e;background:none;border:none;border-bottom:1px solid #c9a96e;padding-bottom:2px;cursor:pointer;font-family:'Inter',sans-serif}
+.split{display:grid;grid-template-columns:1fr 1fr}
+.split-panel{padding:2.5rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:240px}
+.split-a{background:#1a1a2e}.split-b{background:#f0ebe0}
+.split-ey{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem;font-weight:500}
+.split-ey.light{color:#8a9fd4}.split-ey.dark{color:#8a7a65}
+.split-h{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;line-height:1.2}
+.split-h.light{color:#f0ebe0}.split-h.dark{color:#1a1a1a}
+.aero-hero{background:#2d3561;padding:3rem 2.5rem;color:#fff}
+.aero-specs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:.5px solid #e5e0d8}
+.aero-spec{padding:1.25rem 1.5rem;border-right:.5px solid #e5e0d8;text-align:center}
+.aero-spec:last-child{border-right:none}
+.aero-spec-val{font-family:'Playfair Display',serif;font-size:22px;color:#2d3561;margin-bottom:2px}
+.aero-spec-lbl{font-size:11px;color:#8a8a8a;letter-spacing:.05em;text-transform:uppercase}
+.aero-grid{padding:2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e5e0d8;border:.5px solid #e5e0d8}
+.aero-card{background:#fff;padding:1.4rem;position:relative;cursor:pointer;transition:background .15s}
+.aero-card:hover{background:#faf7f2}
+.aero-badge{position:absolute;top:.85rem;left:.85rem;font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:#2d3561;color:#c9a96e;padding:3px 8px}
+.aero-frame{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;margin-bottom:.8rem;background:#fafafa}
+.aero-name{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:2px}
+.aero-color{font-size:12px;color:#8a8a8a;margin-bottom:4px}
+.aero-weight{font-size:11px;color:#5c7a3e;margin-bottom:6px}
+.product-page{display:grid;grid-template-columns:1fr 1fr;min-height:500px}
+.product-visual{background:#1a1a2e;display:flex;align-items:center;justify-content:center}
+.product-info{padding:3rem;overflow-y:auto}
+.product-page-name{font-family:'Playfair Display',serif;font-size:30px;margin-bottom:.4rem}
+.product-meta{font-size:13px;color:#5a5045;margin-bottom:1.5rem}
+.colors{display:flex;gap:10px;margin-bottom:1.5rem}
+.color-dot{width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px #ddd;cursor:pointer}
+.color-dot.active{box-shadow:0 0 0 2.5px #1a1a2e}
+.product-page-price{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:1.25rem}
+.lenses-title{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:.3rem}
+.lenses-sub{font-size:12px;color:#5a5045;margin-bottom:1rem}
+.lens-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:1.25rem}
+.lens-opt{display:flex;justify-content:space-between;align-items:center;padding:.75rem .9rem;border:.5px solid #e5e0d8;border-radius:8px;cursor:pointer}
+.lens-opt.active{border:2px solid #1a1a2e;background:#faf8f4;padding:calc(.75rem - 1px) calc(.9rem - 1px)}
+.lens-opt-left{display:flex;align-items:center;gap:8px}
+.radio{width:16px;height:16px;border-radius:50%;border:1.5px solid #c5c0b5;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lens-opt.active .radio{border-color:#1a1a2e}
+.radio-dot{width:8px;height:8px;border-radius:50%;background:#1a1a2e;display:none}
+.lens-opt.active .radio-dot{display:block}
+.lens-name{font-size:13px;font-weight:500;margin-bottom:1px}
+.lens-desc{font-size:11px;color:#8a8a8a}
+.lens-price{font-size:12px;font-weight:500;white-space:nowrap;margin-left:8px}
+.lens-badge{display:inline-block;font-size:8px;letter-spacing:.06em;text-transform:uppercase;background:#f0ebe0;color:#8a7a65;padding:2px 6px;border-radius:3px;margin-left:6px}
+.summary-box{background:#faf8f4;border:.5px solid #e5e0d8;border-radius:8px;padding:1rem;margin-bottom:1rem}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;color:#5a5045;margin-bottom:5px}
+.sum-row.total{font-size:15px;font-weight:500;color:#1a1a1a;margin-top:8px;padding-top:8px;border-top:.5px solid #e5e0d8}
+.checkout-page{max-width:520px;margin:0 auto;padding:2.5rem 1.5rem}
+.checkout-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:.3rem}
+.checkout-sub{font-size:13px;color:#5a5045;margin-bottom:1.5rem}
+.order-item{display:flex;gap:1rem;padding:1.1rem;background:#fafafa;border:.5px solid #e5e0d8;border-radius:8px;margin-bottom:1.25rem}
+.order-frame{width:72px;height:54px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.order-name{font-family:'Playfair Display',serif;font-size:15px;margin-bottom:2px}
+.order-meta{font-size:11.5px;color:#8a8a8a;line-height:1.5}
+.form-group{margin-bottom:.9rem}
+.form-label{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:#5a5045;margin-bottom:5px;display:block}
+.form-input{width:100%;padding:10px 12px;border:.5px solid #d5d0c5;border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;color:#1a1a1a}
+.form-input::placeholder{color:#b5b0a5}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.confirm-btn{padding:14px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;background:#1a1a2e;color:#fff;border:none;border-radius:2px;cursor:pointer;width:100%;font-family:'Inter',sans-serif;margin-top:.5rem}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:#8a8a8a;margin-top:.75rem}
+.confirm-page{max-width:420px;margin:0 auto;padding:4rem 1.5rem;text-align:center}
+.confirm-icon{width:52px;height:52px;border-radius:50%;background:#f0f7ef;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.confirm-title{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:.75rem}
+.confirm-sub{font-size:14px;color:#5a5045;line-height:1.7;margin-bottom:2rem}
+.cart-btn{position:relative;background:none;border:none;cursor:pointer;font-size:18px;color:#5a5045;padding:0}
+.cart-badge{position:absolute;top:-4px;right:-8px;width:16px;height:16px;border-radius:50%;background:#c9a96e;color:#fff;font-size:9px;display:none;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:500}
+.cart-badge.visible{display:flex}
+footer{background:#1a1a2e;color:#8a9fd4;padding:2rem;display:flex;align-items:center;gap:1rem}
+footer img{height:24px;filter:brightness(0) invert(1) opacity(.85)}
+footer span{font-size:12px;font-weight:300}
 </style>
 </head>
 <body>
+<div class="banner"><span>Nuevo</span> — Serie Aero: ultraligero, desde $95 · Envío gratis · Devoluciones en 30 días</div>
+<nav>
+  <img class="nav-logo" src="logo-losada.png" alt="Ópticas Losada" onclick="goTo('home')" onerror="this.style.display='none';document.getElementById('nav-text').style.display='block'">
+  <span id="nav-text" style="display:none;font-family:Playfair Display,serif;font-size:18px;font-weight:600;cursor:pointer" onclick="goTo('home')">Ópticas Losada</span>
+  <div class="nav-links">
+    <a onclick="goTo('home')">Inicio</a>
+    <a onclick="goTo('aero')">Serie Aero</a>
+    <a onclick="goTo('home')">Lentes de sol</a>
+    <a onclick="goTo('home')">Contactos</a>
+  </div>
+  <div style="display:flex;gap:1rem;align-items:center">
+    <button class="btn-nav">Quiz de estilo</button>
+    <button class="cart-btn" onclick="goTo('checkout')">🛍<span class="cart-badge" id="cartBadge">1</span></button>
+  </div>
+</nav>
 
-  <div class="banner"><span>Nuevo</span> — Series Aero: ultraligero, desde $95 · Envío gratis · Devoluciones en 30 días</div>
-
-  <nav class="nav">
-    <div class="nav-logo"><img src="logo-losada.png" alt="Ópticas Losada"></div>
-    <div class="nav-links">
-      <a href="#">Anteojos</a>
-      <a href="#">Lentes de sol</a>
-      <a href="#">Contactos</a>
-      <a href="#">Examen visual</a>
-      <a href="#">Colecciones</a>
-    </div>
-    <div class="nav-actions">
-      <button class="btn-nav">Quiz de estilo</button>
-      <button class="icon-btn" aria-label="Buscar">&#128269;</button>
-      <button class="icon-btn" aria-label="Carrito">&#128092;</button>
-    </div>
-  </nav>
-
+<!-- INICIO -->
+<div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-text">
-      <div class="hero-eyebrow">Nueva colección — Temporada 2026</div>
+      <div class="eyebrow">Nueva colección — Temporada 2026</div>
       <h1 class="hero-title">Claridad en<br>cada <em>detalle</em></h1>
       <p class="hero-sub">Lentes de prescripción de alta calidad desde $95. Diseño pensado para durar, con materiales que importan.</p>
       <div class="hero-ctas">
-        <button class="btn-primary">Ver colección</button>
+        <button class="btn-primary" onclick="goTo('aero')">Ver Serie Aero</button>
         <button class="btn-secondary">Quiz de estilo</button>
       </div>
     </div>
-    <div class="hero-image">
-      <div class="hero-image-inner">
-        <svg width="280" height="120" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
-          <rect x="10" y="25" width="110" height="70" rx="20" fill="none" stroke="#c9a96e" stroke-width="5"/>
-          <rect x="160" y="25" width="110" height="70" rx="20" fill="none" stroke="#c9a96e" stroke-width="5"/>
-          <line x1="120" y1="60" x2="160" y2="60" stroke="#c9a96e" stroke-width="3"/>
-          <line x1="5" y1="40" x2="10" y2="40" stroke="#c9a96e" stroke-width="3"/>
-          <line x1="270" y1="40" x2="275" y2="40" stroke="#c9a96e" stroke-width="3"/>
-          <rect x="20" y="35" width="90" height="50" rx="14" fill="rgba(201,169,110,0.08)"/>
-          <rect x="170" y="35" width="90" height="50" rx="14" fill="rgba(201,169,110,0.08)"/>
-        </svg>
-        <div class="hero-price">Desde $95 · Incluye lentes recetados</div>
-      </div>
+    <div class="hero-img">
+      <svg width="220" height="90" viewBox="0 0 280 120"><rect x="10" y="25" width="110" height="70" rx="20" fill="none" stroke="#c9a96e" stroke-width="5"/><rect x="160" y="25" width="110" height="70" rx="20" fill="none" stroke="#c9a96e" stroke-width="5"/><line x1="120" y1="60" x2="160" y2="60" stroke="#c9a96e" stroke-width="3"/><line x1="5" y1="40" x2="10" y2="40" stroke="#c9a96e" stroke-width="3"/><line x1="270" y1="40" x2="275" y2="40" stroke="#c9a96e" stroke-width="3"/></svg>
+      <div class="hero-price">Desde $95 · Con lentes recetados</div>
     </div>
   </div>
-
   <div class="perks">
-    <div class="perk">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="6" width="14" height="10" rx="1"/><path d="M15 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
-      <span class="perk-text">Envío gratuito</span>
-    </div>
-    <div class="perk">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
-      <span class="perk-text">30 días para devolver</span>
-    </div>
-    <div class="perk">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-      <span class="perk-text">Prueba virtual en la app</span>
-    </div>
-    <div class="perk">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></svg>
-      <span class="perk-text">Seguro de visión aceptado</span>
-    </div>
+    <div class="perk">Envío gratuito</div>
+    <div class="perk">30 días para devolver</div>
+    <div class="perk">Prueba virtual en la app</div>
+    <div class="perk">Seguro de visión aceptado</div>
   </div>
-
   <div class="section">
     <div class="section-header">
       <h2 class="section-title">Nuevos arrivals</h2>
-      <a href="#" class="section-link">Ver todos</a>
+      <span class="section-link" onclick="goTo('aero')">Ver todos</span>
     </div>
     <div class="products">
-      <div class="product">
+      <div class="product-card" onclick="goTo('product')">
         <div class="product-badge">Nuevo</div>
-        <div class="product-frame">
-          <svg viewBox="0 0 180 80" width="150" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="15" width="75" height="50" rx="14" fill="none" stroke="#2d3561" stroke-width="3.5"/>
-            <rect x="100" y="15" width="75" height="50" rx="14" fill="none" stroke="#2d3561" stroke-width="3.5"/>
-            <line x1="80" y1="40" x2="100" y2="40" stroke="#2d3561" stroke-width="2.5"/>
-            <line x1="0" y1="28" x2="5" y2="28" stroke="#2d3561" stroke-width="2"/>
-            <line x1="175" y1="28" x2="180" y2="28" stroke="#2d3561" stroke-width="2"/>
-            <rect x="12" y="22" width="61" height="36" rx="10" fill="rgba(45,53,97,0.07)"/>
-            <rect x="107" y="22" width="61" height="36" rx="10" fill="rgba(45,53,97,0.07)"/>
-          </svg>
-        </div>
-        <div class="product-name">Boaz</div>
-        <div class="product-color">Azul marino · 3 colores</div>
-        <div class="product-price">$95</div>
+        <div class="product-frame"><svg viewBox="0 0 180 80" width="100"><rect x="5" y="15" width="75" height="50" rx="14" fill="none" stroke="#2d3561" stroke-width="3.5"/><rect x="100" y="15" width="75" height="50" rx="14" fill="none" stroke="#2d3561" stroke-width="3.5"/><line x1="80" y1="40" x2="100" y2="40" stroke="#2d3561" stroke-width="2.5"/></svg></div>
+        <div class="product-name">Boaz</div><div class="product-color">Azul marino</div><div class="product-price">$95</div>
       </div>
-      <div class="product">
-        <div class="product-frame">
-          <svg viewBox="0 0 180 80" width="150" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="20" width="78" height="42" rx="8" fill="none" stroke="#6b4c3b" stroke-width="3.5"/>
-            <rect x="97" y="20" width="78" height="42" rx="8" fill="none" stroke="#6b4c3b" stroke-width="3.5"/>
-            <line x1="83" y1="41" x2="97" y2="41" stroke="#6b4c3b" stroke-width="2.5"/>
-            <line x1="0" y1="30" x2="5" y2="30" stroke="#6b4c3b" stroke-width="2"/>
-            <line x1="175" y1="30" x2="180" y2="30" stroke="#6b4c3b" stroke-width="2"/>
-            <rect x="12" y="26" width="64" height="30" rx="5" fill="rgba(107,76,59,0.1)"/>
-            <rect x="104" y="26" width="64" height="30" rx="5" fill="rgba(107,76,59,0.1)"/>
-          </svg>
-        </div>
-        <div class="product-name">Franny</div>
-        <div class="product-color">Tortoise toffee · 4 colores</div>
-        <div class="product-price">$95</div>
+      <div class="product-card" onclick="goTo('product')">
+        <div class="product-frame"><svg viewBox="0 0 180 80" width="100"><rect x="5" y="20" width="78" height="42" rx="8" fill="none" stroke="#6b4c3b" stroke-width="3.5"/><rect x="97" y="20" width="78" height="42" rx="8" fill="none" stroke="#6b4c3b" stroke-width="3.5"/><line x1="83" y1="41" x2="97" y2="41" stroke="#6b4c3b" stroke-width="2.5"/></svg></div>
+        <div class="product-name">Franny</div><div class="product-color">Tortoise</div><div class="product-price">$95</div>
       </div>
-      <div class="product">
+      <div class="product-card" onclick="goTo('product')">
         <div class="product-badge">Bestseller</div>
-        <div class="product-frame">
-          <svg viewBox="0 0 180 80" width="150" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="44" cy="41" rx="39" ry="26" fill="none" stroke="#3d3d3d" stroke-width="3.5"/>
-            <ellipse cx="136" cy="41" rx="39" ry="26" fill="none" stroke="#3d3d3d" stroke-width="3.5"/>
-            <line x1="83" y1="41" x2="97" y1="41" stroke="#3d3d3d" stroke-width="2.5"/>
-            <line x1="0" y1="31" x2="5" y1="31" stroke="#3d3d3d" stroke-width="2"/>
-            <line x1="175" y1="31" x2="180" y1="31" stroke="#3d3d3d" stroke-width="2"/>
-            <ellipse cx="44" cy="41" rx="30" ry="18" fill="rgba(61,61,61,0.07)"/>
-            <ellipse cx="136" cy="41" rx="30" ry="18" fill="rgba(61,61,61,0.07)"/>
-          </svg>
-        </div>
-        <div class="product-name">Carlton</div>
-        <div class="product-color">Negro jet · 6 colores</div>
-        <div class="product-price">$95</div>
+        <div class="product-frame"><svg viewBox="0 0 180 80" width="100"><ellipse cx="44" cy="41" rx="39" ry="26" fill="none" stroke="#3d3d3d" stroke-width="3.5"/><ellipse cx="136" cy="41" rx="39" ry="26" fill="none" stroke="#3d3d3d" stroke-width="3.5"/><line x1="83" y1="41" x2="97" y2="41" stroke="#3d3d3d" stroke-width="2.5"/></svg></div>
+        <div class="product-name">Carlton</div><div class="product-color">Negro jet</div><div class="product-price">$95</div>
       </div>
-      <div class="product">
-        <div class="product-frame">
-          <svg viewBox="0 0 180 80" width="150" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="18" width="80" height="44" rx="22" fill="none" stroke="#5c7a3e" stroke-width="3.5"/>
-            <rect x="95" y="18" width="80" height="44" rx="22" fill="none" stroke="#5c7a3e" stroke-width="3.5"/>
-            <line x1="85" y1="40" x2="95" y2="40" stroke="#5c7a3e" stroke-width="2.5"/>
-            <line x1="0" y1="30" x2="5" y2="30" stroke="#5c7a3e" stroke-width="2"/>
-            <line x1="175" y1="30" x2="180" y2="30" stroke="#5c7a3e" stroke-width="2"/>
-            <rect x="13" y="26" width="64" height="28" rx="16" fill="rgba(92,122,62,0.1)"/>
-            <rect x="103" y="26" width="64" height="28" rx="16" fill="rgba(92,122,62,0.1)"/>
-          </svg>
-        </div>
-        <div class="product-name">Simone</div>
-        <div class="product-color">Verde botella · 3 colores</div>
-        <div class="product-price">$95</div>
+      <div class="product-card" onclick="goTo('aero')">
+        <div class="product-frame"><svg viewBox="0 0 180 80" width="100"><rect x="5" y="18" width="80" height="44" rx="22" fill="none" stroke="#5c7a3e" stroke-width="3.5"/><rect x="95" y="18" width="80" height="44" rx="22" fill="none" stroke="#5c7a3e" stroke-width="3.5"/><line x1="85" y1="40" x2="95" y2="40" stroke="#5c7a3e" stroke-width="2.5"/></svg></div>
+        <div class="product-name">Simone</div><div class="product-color">Verde botella</div><div class="product-price">$95</div>
       </div>
     </div>
   </div>
-
+  <div class="aero-banner">
+    <div class="eyebrow" style="color:#8a9fd4">Nueva colección</div>
+    <div class="aero-title">Serie <em>Aero</em> — ultralivianos</div>
+    <p class="aero-sub">Marcos de titanio de 7g en promedio, diseñados para todo el día.</p>
+    <button class="aero-cta" onclick="goTo('aero')">Ver Serie Aero →</button>
+  </div>
   <div class="split">
-    <div class="split-panel split-a">
-      <div class="split-eyebrow light">Serie Aero</div>
-      <div class="split-heading light">Ultra-<em style="font-style:italic">ligero</em>,<br>hecho en Italia</div>
-      <button class="split-cta light">Ver Serie Aero →</button>
+    <div class="split-panel split-a"><div class="split-ey light">Contactos</div><div class="split-h light">Lentes de contacto también disponibles</div></div>
+    <div class="split-panel split-b"><div class="split-ey dark">Lentes de sol</div><div class="split-h dark">El verano en foco</div></div>
+  </div>
+  <footer><img src="logo-losada.png" alt="Ópticas Losada" onerror="this.style.display='none'"><span>Anteojos de diseño a precios que no necesitan receta para leerse.</span></footer>
+</div>
+
+<!-- SERIE AERO -->
+<div id="page-aero" class="page">
+  <div class="aero-hero">
+    <div class="eyebrow" style="color:#8a9fd4">Nueva colección</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:34px;font-weight:400;margin-bottom:.5rem;color:#fff">Serie <em style="font-style:italic;color:#c9a96e">Aero</em></h1>
+    <p style="font-size:14px;color:#c5cce8;line-height:1.6;max-width:440px;font-weight:300">Marcos de titanio ultralivianos. Nuevo estándar de comodidad para todo el día.</p>
+  </div>
+  <div class="aero-specs">
+    <div class="aero-spec"><div class="aero-spec-val">7g</div><div class="aero-spec-lbl">Peso promedio</div></div>
+    <div class="aero-spec"><div class="aero-spec-val">Ti</div><div class="aero-spec-lbl">Titanio premium</div></div>
+    <div class="aero-spec"><div class="aero-spec-val">$95</div><div class="aero-spec-lbl">Con lentes recetados</div></div>
+  </div>
+  <div class="aero-grid">
+    <div class="aero-card" onclick="goTo('product')">
+      <div class="aero-badge">Aero</div>
+      <div class="aero-frame"><svg viewBox="0 0 180 80" width="130"><rect x="5" y="22" width="75" height="36" rx="18" fill="none" stroke="#2d3561" stroke-width="2.5"/><rect x="100" y="22" width="75" height="36" rx="18" fill="none" stroke="#2d3561" stroke-width="2.5"/><line x1="80" y1="40" x2="100" y2="40" stroke="#2d3561" stroke-width="2"/><line x1="0" y1="30" x2="5" y2="30" stroke="#2d3561" stroke-width="1.5"/><line x1="175" y1="30" x2="180" y2="30" stroke="#2d3561" stroke-width="1.5"/></svg></div>
+      <div class="aero-name">Aero Lin</div><div class="aero-color">Titanio plata</div><div class="aero-weight">6.8g · ultraliviano</div><div class="product-price">$95</div>
     </div>
-    <div class="split-panel split-b">
-      <div class="split-eyebrow dark">Lentes de sol</div>
-      <div class="split-heading dark">El verano<br>en <em style="font-style:italic;color:#6b4c3b">foco</em></div>
-      <button class="split-cta dark">Ver lentes de sol →</button>
+    <div class="aero-card" onclick="goTo('product')">
+      <div class="aero-badge">Aero</div>
+      <div class="aero-frame"><svg viewBox="0 0 180 80" width="130"><rect x="5" y="20" width="75" height="40" rx="10" fill="none" stroke="#6b4c3b" stroke-width="2.5"/><rect x="100" y="20" width="75" height="40" rx="10" fill="none" stroke="#6b4c3b" stroke-width="2.5"/><line x1="80" y1="40" x2="100" y2="40" stroke="#6b4c3b" stroke-width="2"/><line x1="0" y1="28" x2="5" y2="28" stroke="#6b4c3b" stroke-width="1.5"/><line x1="175" y1="28" x2="180" y2="28" stroke="#6b4c3b" stroke-width="1.5"/></svg></div>
+      <div class="aero-name">Aero Wren</div><div class="aero-color">Titanio bronce</div><div class="aero-weight">7.2g · ultraliviano</div><div class="product-price">$95</div>
+    </div>
+    <div class="aero-card" onclick="goTo('product')">
+      <div class="aero-badge">Aero</div>
+      <div class="aero-frame"><svg viewBox="0 0 180 80" width="130"><ellipse cx="44" cy="40" rx="36" ry="22" fill="none" stroke="#3d3d3d" stroke-width="2.5"/><ellipse cx="136" cy="40" rx="36" ry="22" fill="none" stroke="#3d3d3d" stroke-width="2.5"/><line x1="80" y1="40" x2="100" y2="40" stroke="#3d3d3d" stroke-width="2"/><line x1="3" y1="32" x2="8" y2="32" stroke="#3d3d3d" stroke-width="1.5"/><line x1="172" y1="32" x2="177" y2="32" stroke="#3d3d3d" stroke-width="1.5"/></svg></div>
+      <div class="aero-name">Aero Nico</div><div class="aero-color">Titanio negro mate</div><div class="aero-weight">7.5g · ultraliviano</div><div class="product-price">$95</div>
     </div>
   </div>
+  <div style="padding:1.5rem 2rem;text-align:center"><button class="btn-secondary" onclick="goTo('home')">← Volver al inicio</button></div>
+  <footer><img src="logo-losada.png" alt="" onerror="this.style.display='none'"><span>Ópticas Losada — Anteojos de diseño a precios que no necesitan receta para leerse.</span></footer>
+</div>
 
-  <div class="footer">
-    <div>
-      <div class="footer-logo"><img src="logo-losada.png" alt="Ópticas Losada"></div>
-      <p class="footer-tagline">Anteojos de diseño a precios<br>que no necesitan receta para leerse.</p>
+<!-- PRODUCTO -->
+<div id="page-product" class="page">
+  <div class="product-page">
+    <div class="product-visual">
+      <svg width="230" height="96" viewBox="0 0 280 120"><rect x="10" y="28" width="110" height="64" rx="32" fill="none" stroke="#c9c9c9" stroke-width="4"/><rect x="160" y="28" width="110" height="64" rx="32" fill="none" stroke="#c9c9c9" stroke-width="4"/><line x1="120" y1="60" x2="160" y2="60" stroke="#c9c9c9" stroke-width="3"/><line x1="5" y1="42" x2="10" y2="42" stroke="#c9c9c9" stroke-width="2.5"/><line x1="270" y1="42" x2="275" y2="42" stroke="#c9c9c9" stroke-width="2.5"/></svg>
     </div>
-    <div>
-      <div class="footer-col-title">Comprar</div>
-      <a href="#" class="footer-link">Anteojos</a>
-      <a href="#" class="footer-link">Lentes de sol</a>
-      <a href="#" class="footer-link">Contactos</a>
-      <a href="#" class="footer-link">Accesorios</a>
-    </div>
-    <div>
-      <div class="footer-col-title">Servicios</div>
-      <a href="#" class="footer-link">Prueba virtual</a>
-      <a href="#" class="footer-link">Examen visual</a>
-      <a href="#" class="footer-link">Seguro de visión</a>
-      <a href="#" class="footer-link">Quiz de estilo</a>
-    </div>
-    <div>
-      <div class="footer-col-title">Nosotros</div>
-      <a href="#" class="footer-link">Nuestra historia</a>
-      <a href="#" class="footer-link">Buy a Pair, Give a Pair</a>
-      <a href="#" class="footer-link">Tiendas</a>
-      <a href="#" class="footer-link">Trabaja con nosotros</a>
+    <div class="product-info">
+      <div class="eyebrow">Serie Aero</div>
+      <div class="product-page-name">Aero Lin</div>
+      <div class="product-meta">Titanio · 6.8g · Marco rectangular</div>
+      <div class="colors">
+        <div class="color-dot active" style="background:#c9c9c9" title="Plata"></div>
+        <div class="color-dot" style="background:#6b4c3b" title="Bronce"></div>
+        <div class="color-dot" style="background:#2d2d2d" title="Negro mate"></div>
+      </div>
+      <div class="product-page-price" id="prod-price">$95</div>
+      <div class="lenses-title">Elegí tus cristales</div>
+      <div class="lenses-sub">Todos incluyen tu graduación y antirreflejo.</div>
+      <div class="lens-opts" id="lensOpts">
+        <div class="lens-opt active" data-price="0" data-name="Estándar">
+          <div class="lens-opt-left"><div class="radio"><div class="radio-dot"></div></div><div><div class="lens-name">Estándar<span class="lens-badge">Incluido</span></div><div class="lens-desc">Monofocal, antirreflejo</div></div></div>
+          <div class="lens-price">+$0</div>
+        </div>
+        <div class="lens-opt" data-price="30" data-name="Filtro luz azul">
+          <div class="lens-opt-left"><div class="radio"><div class="radio-dot"></div></div><div><div class="lens-name">Filtro luz azul</div><div class="lens-desc">Reduce fatiga frente a pantallas</div></div></div>
+          <div class="lens-price">+$30</div>
+        </div>
+        <div class="lens-opt" data-price="80" data-name="Fotocromáticos">
+          <div class="lens-opt-left"><div class="radio"><div class="radio-dot"></div></div><div><div class="lens-name">Fotocromáticos</div><div class="lens-desc">Se oscurecen con el sol</div></div></div>
+          <div class="lens-price">+$80</div>
+        </div>
+        <div class="lens-opt" data-price="60" data-name="Alto índice 1.67">
+          <div class="lens-opt-left"><div class="radio"><div class="radio-dot"></div></div><div><div class="lens-name">Alto índice 1.67</div><div class="lens-desc">Más finos para graduaciones altas</div></div></div>
+          <div class="lens-price">+$60</div>
+        </div>
+        <div class="lens-opt" data-price="150" data-name="Progresivos">
+          <div class="lens-opt-left"><div class="radio"><div class="radio-dot"></div></div><div><div class="lens-name">Progresivos</div><div class="lens-desc">Visión de cerca y lejos</div></div></div>
+          <div class="lens-price">+$150</div>
+        </div>
+      </div>
+      <div class="summary-box">
+        <div class="sum-row"><span>Aero Lin</span><span>$95</span></div>
+        <div class="sum-row" id="sum-extra" style="display:none"><span id="sum-extra-name"></span><span id="sum-extra-price"></span></div>
+        <div class="sum-row"><span>Envío</span><span>Gratis</span></div>
+        <div class="sum-row total"><span>Total</span><span id="sum-total">$95</span></div>
+      </div>
+      <button class="btn-primary" style="width:100%" onclick="addToCart()">Agregar al carrito</button>
+      <div style="margin-top:.75rem;text-align:center"><button class="btn-secondary" onclick="goTo('aero')" style="font-size:12px;padding:8px 16px">← Volver</button></div>
     </div>
   </div>
+</div>
 
+<!-- CHECKOUT -->
+<div id="page-checkout" class="page">
+  <div class="checkout-page">
+    <div class="checkout-title">Finalizar compra</div>
+    <div class="checkout-sub">Revisá tu pedido y completá tus datos.</div>
+    <div class="order-item">
+      <div class="order-frame"><svg viewBox="0 0 180 80" width="62"><rect x="5" y="22" width="75" height="36" rx="18" fill="none" stroke="#9a9a9a" stroke-width="3"/><rect x="100" y="22" width="75" height="36" rx="18" fill="none" stroke="#9a9a9a" stroke-width="3"/><line x1="80" y1="40" x2="100" y2="40" stroke="#9a9a9a" stroke-width="2"/></svg></div>
+      <div><div class="order-name">Aero Lin · Titanio plata</div><div class="order-meta" id="checkout-meta">Cristales Estándar</div><div style="font-size:13px;font-weight:500;margin-top:4px" id="checkout-price">$95</div></div>
+    </div>
+    <div class="form-group"><label class="form-label">Nombre completo</label><input class="form-input" type="text" placeholder="Tu nombre"></div>
+    <div class="form-group"><label class="form-label">Dirección de envío</label><input class="form-input" type="text" placeholder="Calle, número, ciudad"></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Receta</label><input class="form-input" type="text" placeholder="Subir o ingresar"></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="tu@email.com"></div>
+    </div>
+    <div class="summary-box" style="margin-top:.5rem">
+      <div class="sum-row"><span>Aero Lin</span><span>$95</span></div>
+      <div class="sum-row" id="co-extra" style="display:none"><span id="co-extra-name"></span><span id="co-extra-price"></span></div>
+      <div class="sum-row"><span>Envío</span><span>Gratis</span></div>
+      <div class="sum-row total"><span>Total</span><span id="co-total">$95</span></div>
+    </div>
+    <button class="confirm-btn" onclick="goTo('confirm')">Confirmar pedido →</button>
+    <div class="secure-note">🔒 Pago seguro · Devoluciones en 30 días</div>
+    <div style="text-align:center;margin-top:.75rem"><button class="btn-secondary" onclick="goTo('product')" style="font-size:12px;padding:8px 16px">← Volver al producto</button></div>
+  </div>
+</div>
+
+<!-- CONFIRMACION -->
+<div id="page-confirm" class="page">
+  <div class="confirm-page">
+    <div class="confirm-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5c7a3e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="confirm-title">¡Pedido confirmado!</div>
+    <p class="confirm-sub">Tus Aero Lin están en camino. Recibirás un email con el seguimiento en las próximas 24 horas.<br><br>Tiempo estimado de entrega: <strong>5–7 días hábiles</strong>.</p>
+    <button class="btn-primary" onclick="goTo('home')">Volver al inicio</button>
+  </div>
+</div>
+
+<script>
+function goTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  window.scrollTo(0,0);
+}
+let selectedLens = {price:0, name:'Estándar'};
+const base = 95;
+document.querySelectorAll('.lens-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.lens-opt').forEach(o => o.classList.remove('active'));
+    opt.classList.add('active');
+    const price = parseInt(opt.dataset.price);
+    const name = opt.dataset.name;
+    selectedLens = {price, name};
+    const total = base + price;
+    document.getElementById('prod-price').textContent = '$' + total;
+    document.getElementById('sum-total').textContent = '$' + total;
+    if (price > 0) {
+      document.getElementById('sum-extra').style.display = 'flex';
+      document.getElementById('sum-extra-name').textContent = 'Cristales ' + name;
+      document.getElementById('sum-extra-price').textContent = '+$' + price;
+    } else {
+      document.getElementById('sum-extra').style.display = 'none';
+    }
+  });
+});
+document.querySelectorAll('.color-dot').forEach(dot => {
+  dot.addEventListener('click', () => {
+    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+    dot.classList.add('active');
+  });
+});
+function addToCart() {
+  const total = base + selectedLens.price;
+  document.getElementById('checkout-meta').textContent = 'Cristales ' + selectedLens.name;
+  document.getElementById('checkout-price').textContent = '$' + total;
+  document.getElementById('co-total').textContent = '$' + total;
+  if (selectedLens.price > 0) {
+    document.getElementById('co-extra').style.display = 'flex';
+    document.getElementById('co-extra-name').textContent = 'Cristales ' + selectedLens.name;
+    document.getElementById('co-extra-price').textContent = '+$' + selectedLens.price;
+  } else {
+    document.getElementById('co-extra').style.display = 'none';
+  }
+  document.getElementById('cartBadge').classList.add('visible');
+  goTo('checkout');
+}
+</script>
 </body>
 </html>
