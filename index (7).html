@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ópticas Losada</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;color:#1a1a1a;background:#fff}
+.page{display:none}.page.active{display:block}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;border-bottom:.5px solid #e5e0d8;background:#fff;position:sticky;top:0;z-index:50}
+.nav-logo{height:34px;cursor:pointer}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:13px;color:#5a5045;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+.btn-nav{font-size:12px;padding:7px 18px;border:.5px solid #1a1a1a;border-radius:2px;background:transparent;color:#1a1a1a;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;font-family:'Inter',sans-serif}
+.banner{background:#1a1a2e;color:#e8e0d4;text-align:center;font-size:12px;padding:9px;letter-spacing:.08em;text-transform:uppercase}
+.banner span{color:#c9a96e;font-weight:500}
+.btn-primary{padding:12px 26px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:#1a1a2e;color:#f5f0e8;border:none;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif}
+.btn-primary:hover{background:#2a2a4e}
+.btn-secondary{padding:12px 26px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:#1a1a2e;border:.5px solid #1a1a2e;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif}
+.cart-btn{position:relative;background:none;border:none;cursor:pointer;font-size:18px;color:#5a5045;padding:0}
+.cart-badge{position:absolute;top:-4px;right:-8px;width:16px;height:16px;border-radius:50%;background:#c9a96e;color:#fff;font-size:9px;display:none;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:500}
+.cart-badge.visible{display:flex}
+
+/* HOME */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:460px}
+.hero-text{background:#f5f0e8;display:flex;flex-direction:column;justify-content:center;padding:3.5rem}
+.eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a7a65;margin-bottom:.8rem;font-weight:500}
+.hero-title{font-family:'Playfair Display',serif;font-size:44px;font-weight:400;line-height:1.1;margin-bottom:1.1rem}
+.hero-title em{font-style:italic;color:#6b5e4c}
+.hero-sub{font-size:14px;color:#5a5045;line-height:1.7;max-width:340px;margin-bottom:1.75rem;font-weight:300}
+.hero-ctas{display:flex;gap:12px}
+.hero-img{background:#1a1a2e;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.25rem}
+.hero-price{font-family:'Playfair Display',serif;font-size:13px;color:#c9a96e;letter-spacing:.1em;text-transform:uppercase}
+.perks{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:.5px solid #e5e0d8}
+.perk{padding:1.1rem 1rem;border-right:.5px solid #e5e0d8;text-align:center;font-size:11.5px;color:#5a5045}
+.perk:last-child{border-right:none}
+.section{padding:2.5rem 2rem}
+.section-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.25rem}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:400}
+.section-link{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5a5045;text-decoration:none;border-bottom:.5px solid #1a1a1a;padding-bottom:2px;cursor:pointer}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e5e0d8;border:.5px solid #e5e0d8}
+.product-card{background:#fff;padding:1.1rem;position:relative;cursor:pointer;transition:background .15s}
+.product-card:hover{background:#faf7f2}
+.product-badge{position:absolute;top:.75rem;left:.75rem;font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:#1a1a2e;color:#e8e0d4;padding:3px 7px}
+.product-frame{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;margin-bottom:.6rem;background:#fafafa}
+.product-name{font-family:'Playfair Display',serif;font-size:14px}
+.product-color{font-size:10.5px;color:#8a8a8a;margin-bottom:3px}
+.product-price{font-size:11.5px;font-weight:500}
+.aero-banner{background:#2d3561;padding:2.5rem 2rem;color:#fff}
+.aero-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;margin-bottom:.5rem}
+.aero-title em{font-style:italic;color:#c9a96e}
+.aero-sub{font-size:13px;color:#c5cce8;line-height:1.6;max-width:440px;font-weight:300;margin-bottom:1rem}
+.aero-cta{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:#c9a96e;background:none;border:none;border-bottom:1px solid #c9a96e;padding-bottom:2px;cursor:pointer;font-family:'Inter',sans-serif}
+.split{display:grid;grid-template-columns:1fr 1fr}
+.split-panel{padding:2.5rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:240px}
+.split-a{background:#1a1a2e}.split-b{background:#f0ebe0}
+.split-ey{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem;font-weight:500}
+.split-ey.light{color:#8a9fd4}.split-ey.dark{color:#8a7a65}
+.split-h{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;line-height:1.2}
+.split-h.light{color:#f0ebe0}.split-h.dark{color:#1a1a1a}
+
+/* AERO */
+.aero-hero{background:#2d3561;padding:3rem 2.5rem;color:#fff}
+.aero-specs{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:.5px solid #e5e0d8}
+.aero-spec{padding:1.25rem 1.5rem;border-right:.5px solid #e5e0d8;text-align:center}
+.aero-spec:last-child{border-right:none}
+.aero-spec-val{font-family:'Playfair Display',serif;font-size:22px;color:#2d3561;margin-bottom:2px}
+.aero-spec-lbl{font-size:11px;color:#8a8a8a;letter-spacing:.05em;text-transform:uppercase}
+.aero-grid{padding:2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e5e0d8;border:.5px solid #e5e0d8}
+.aero-card{background:#fff;padding:1.4rem;position:relative;cursor:pointer;transition:background .15s}
+.aero-card:hover{background:#faf7f2}
+.aero-badge{position:absolute;top:.85rem;left:.85rem;font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:#2d3561;color:#c9a96e;padding:3px 8px}
+.aero-frame{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;margin-bottom:.8rem;background:#fafafa}
+.aero-name{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:2px}
+.aero-color{font-size:12px;color:#8a8a8a;margin-bottom:4px}
+.aero-weight{font-size:11px;color:#5c7a3e;margin-bottom:6px}
+
+/* PRODUCTO */
+.product-page{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.product-visual{background:#1a1a2e;display:flex;align-items:center;justify-content:center;position:sticky;top:64px;height:calc(100vh - 64px)}
+.product-info{padding:2.5rem;overflow-y:auto}
+.product-page-name{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:.4rem}
+.product-meta-txt{font-size:13px;color:#5a5045;margin-bottom:1.25rem}
+.colors{display:flex;gap:10px;margin-bottom:1.5rem}
+.color-dot{width:28px;height:28px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px #ddd;cursor:pointer}
+.color-dot.active{box-shadow:0 0 0 2.5px #1a1a2e}
+.running-price{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:1.5rem;color:#1a1a2e}
+
+/* ============ WIZARD ============ */
+.wz{border:.5px solid #e5e0d8;border-radius:10px;overflow:visible;margin-bottom:1.25rem}
+.wz-head{background:#2d3561;padding:1rem 1.25rem;border-radius:10px 10px 0 0}
+.wz-head-eye{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a9fd4;margin-bottom:2px}
+.wz-head-name{font-family:'Playfair Display',serif;font-size:16px;color:#fff}
+
+/* Progress bar */
+.wz-progress{display:flex;align-items:center;padding:.75rem 1.25rem;background:#faf8f4;border-bottom:.5px solid #e5e0d8;gap:0}
+.wz-prog-step{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#b5b0a5;letter-spacing:.04em;text-transform:uppercase}
+.wz-prog-step.active{color:#1a1a2e;font-weight:500}
+.wz-prog-step.done{color:#5c7a3e}
+.wz-prog-dot{width:20px;height:20px;border-radius:50%;border:1.5px solid #d5d0c5;display:flex;align-items:center;justify-content:center;font-size:9px;color:#b5b0a5;flex-shrink:0}
+.wz-prog-step.active .wz-prog-dot{border-color:#1a1a2e;color:#1a1a2e;background:#fff}
+.wz-prog-step.done .wz-prog-dot{border-color:#5c7a3e;background:#f0f7ef;color:#5c7a3e}
+.wz-prog-line{flex:1;height:1px;background:#e5e0d8;margin:0 6px}
+
+/* Pages */
+.wz-page-inner{display:none;padding:1.25rem}
+.wz-page-inner.active{display:block}
+.wz-page-title{font-size:16px;font-weight:500;margin-bottom:.25rem;color:#1a1a1a}
+.wz-page-sub{font-size:12px;color:#5a5045;margin-bottom:1.1rem;line-height:1.5}
+
+/* CARDS con tooltip integrado — estilo VisionDirecta */
+.vd-cards{display:flex;flex-direction:column;gap:0;border:.5px solid #e5e0d8;border-radius:8px;overflow:visible}
+.vd-card{position:relative;border-bottom:.5px solid #e5e0d8;cursor:pointer}
+.vd-card:last-child{border-bottom:none}
+.vd-card-row{display:flex;align-items:center;gap:12px;padding:.85rem 1rem;transition:background .15s}
+.vd-card-row:hover{background:#faf8f4}
+.vd-card.selected .vd-card-row{background:#f0f5ff}
+.vd-card.selected{border-left:3px solid #1a1a2e}
+.vd-card.selected .vd-card-row{padding-left:calc(1rem - 2px)}
+.vd-icon{font-size:22px;width:32px;text-align:center;flex-shrink:0}
+.vd-texts{flex:1}
+.vd-title{font-size:13.5px;font-weight:500;color:#1a1a1a;display:flex;align-items:center;gap:6px}
+.vd-desc{font-size:11.5px;color:#8a8a8a;margin-top:1px}
+.vd-price-tag{font-size:12.5px;font-weight:500;color:#2d3561;white-space:nowrap;margin-left:auto}
+.vd-check{width:18px;height:18px;border-radius:50%;border:1.5px solid #2d3561;background:#2d3561;display:none;align-items:center;justify-content:center;flex-shrink:0}
+.vd-card.selected .vd-check{display:flex}
+
+/* Botón ? */
+.qbtn{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;border:1.5px solid #aaa;color:#888;font-size:10px;font-weight:700;cursor:pointer;background:#fff;font-family:'Inter',sans-serif;line-height:1;flex-shrink:0}
+.qbtn:hover{border-color:#2d3561;color:#2d3561}
+
+/* Tooltip inline expandible — como VisionDirecta */
+.vd-tooltip{display:none;background:#fff;border:.5px solid #d5d0c5;border-radius:8px;margin:0 .75rem .75rem;padding:.9rem;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.vd-tooltip.open{display:flex;gap:12px}
+.vd-tooltip-img{width:100px;height:70px;object-fit:cover;border-radius:6px;flex-shrink:0;background:#e5e0d8;display:flex;align-items:center;justify-content:center;font-size:28px}
+.vd-tooltip-body{}
+.vd-tooltip-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:5px}
+.vd-tooltip-text{font-size:12px;color:#3a3a3a;line-height:1.6}
+.vd-tooltip-rec{font-size:11px;color:#6b5e4c;margin-top:6px;background:#faf5ec;border-radius:4px;padding:4px 8px}
+
+/* Recomendado badge */
+.rec-badge{font-size:9px;letter-spacing:.05em;text-transform:uppercase;background:#f0f7ef;color:#5c7a3e;padding:2px 7px;border-radius:3px;font-weight:500}
+.inc-badge{font-size:9px;letter-spacing:.05em;text-transform:uppercase;background:#f0ebe0;color:#8a7a65;padding:2px 7px;border-radius:3px;font-weight:400}
+
+/* RECETA FORM */
+.rx-form{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem}
+.rx-field label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#5a5045;margin-bottom:4px;display:block}
+.rx-input{width:100%;padding:8px 10px;border:.5px solid #d5d0c5;border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;color:#1a1a1a;text-align:center}
+.rx-input::placeholder{color:#c5c0b5;font-size:12px}
+.rx-input:focus{outline:none;border-color:#2d3561}
+.rx-hint{font-size:11px;color:#8a7a65;line-height:1.5;background:#faf5ec;border-radius:6px;padding:.6rem .8rem;margin-bottom:.75rem}
+.rx-dp-row{grid-column:1/-1}
+.rx-error{font-size:11.5px;color:#c0392b;background:#fdf0ee;border-radius:6px;padding:.5rem .8rem;margin-bottom:.75rem;display:none}
+
+/* SUMMARY BAR */
+.wz-summary-bar{background:#faf8f4;border-top:.5px solid #e5e0d8;padding:.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center}
+.wz-summary-lbl{font-size:10px;color:#8a7a65;text-transform:uppercase;letter-spacing:.06em}
+.wz-summary-total{font-family:'Playfair Display',serif;font-size:18px;color:#1a1a2e}
+
+/* NAV BUTTONS */
+.wz-nav{padding:.75rem 1.25rem;display:flex;gap:8px;border-top:.5px solid #e5e0d8}
+.wz-back{padding:9px 14px;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;background:transparent;color:#5a5045;border:.5px solid #d5d0c5;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif}
+.wz-next{flex:1;padding:10px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;background:#1a1a2e;color:#fff;border:none;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif}
+.wz-next:disabled{background:#c5c0b5;cursor:not-allowed}
+
+/* CONFIRM RESUMEN */
+.wz-confirm-box{padding:1.25rem}
+.wz-confirm-icon{width:44px;height:44px;border-radius:50%;background:#f0f7ef;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem}
+.wz-confirm-title{font-family:'Playfair Display',serif;font-size:17px;text-align:center;margin-bottom:.25rem}
+.wz-confirm-sub{font-size:11.5px;color:#5a5045;line-height:1.5;text-align:center;margin-bottom:1rem}
+.wz-confirm-detail{background:#faf8f4;border:.5px solid #e5e0d8;border-radius:8px;padding:.9rem;margin-bottom:1rem}
+.wz-row{display:flex;justify-content:space-between;font-size:12.5px;color:#5a5045;margin-bottom:5px}
+.wz-row.total{font-size:14px;font-weight:500;color:#1a1a2e;padding-top:7px;border-top:.5px solid #e5e0d8;margin-top:5px}
+.wz-add-btn{width:100%;padding:12px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;background:#1a1a2e;color:#fff;border:none;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif}
+
+/* CHECKOUT */
+.checkout-page{max-width:520px;margin:0 auto;padding:2.5rem 1.5rem}
+.checkout-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:.3rem}
+.checkout-sub{font-size:13px;color:#5a5045;margin-bottom:1.5rem}
+.order-item{display:flex;gap:1rem;padding:1.1rem;background:#fafafa;border:.5px solid #e5e0d8;border-radius:8px;margin-bottom:1.25rem}
+.order-frame{width:72px;height:54px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.order-name{font-family:'Playfair Display',serif;font-size:15px;margin-bottom:2px}
+.order-meta{font-size:11.5px;color:#8a8a8a;line-height:1.5}
+.form-group{margin-bottom:.9rem}
+.form-label{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:#5a5045;margin-bottom:5px;display:block}
+.form-input{width:100%;padding:10px 12px;border:.5px solid #d5d0c5;border-radius:6px;font-size:13px;font-family:'Inter',sans-serif;color:#1a1a1a}
+.form-input::placeholder{color:#b5b0a5}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.summary-box{background:#faf8f4;border:.5px solid #e5e0d8;border-radius:8px;padding:1rem;margin-bottom:1rem}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;color:#5a5045;margin-bottom:5px}
+.sum-row.total{font-size:15px;font-weight:500;color:#1a1a1a;margin-top:8px;padding-top:8px;border-top:.5px solid #e5e0d8}
+.confirm-btn{padding:14px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;background:#1a1a2e;color:#fff;border:none;border-radius:2px;cursor:pointer;width:100%;font-family:'Inter',sans-serif;margin-top:.5rem}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:#8a8a8a;margin-top:.75rem}
+
+/* CONFIRM PAGE */
+.confirm-page{max-width:420px;margin:0 auto;padding:4rem 1.5rem;text-align:center}
+.confirm-icon{width:52px;height:52px;border-radius:50%;background:#f0f7ef;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.confirm-title{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:.75rem}
+.confirm-sub{font-size:14px;color:#5a5045;line-height:1.7;margin-bottom:2rem}
+
+footer{background:#1a1a2e;color:#8a9fd4;padding:2rem;display:flex;align-items:center;gap:1rem}
+footer img{height:24px;filter:brightness(0) invert(1) opacity(.85)}
+footer span{font-size:12px;font-weight:300}
+
+/* RX MEJORADO */
+.rx-eye-head{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#2d3561;font-weight:600;padding:.4rem .6rem;background:#f0f5ff;border-radius:4px;margin-bottom:.5rem}
+.rx-field-hint{font-size:10px;color:#aaa;margin-top:2px;line-height:1.3}
+.rx-skip{margin-top:.75rem;padding:.65rem .9rem;background:#f0f5ff;border-radius:6px;font-size:11.5px;color:#2d3561;cursor:pointer;border:.5px solid #d0daf5}
+.rx-skip:hover{background:#e4ecff}
+.rx-error{font-size:11.5px;color:#c0392b;background:#fdf0ee;border:.5px solid #f5c6c0;border-radius:6px;padding:.45rem .8rem;margin-bottom:.5rem}
+/* EE Preview */
+.ee-preview{background:#f0f7ef;border:.5px solid #c5e0be;border-radius:8px;padding:.8rem 1rem;margin-bottom:.75rem}
+.ee-preview-title{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5c7a3e;font-weight:500;margin-bottom:.5rem}
+.ee-preview-body{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.ee-eye{display:flex;align-items:center;gap:.4rem}
+.ee-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#5c7a3e;font-weight:500}
+.ee-val{font-family:'Playfair Display',serif;font-size:16px;color:#1a1a1a;min-width:40px}
+.ee-rec{font-size:11.5px;color:#3a6e2a;flex:1;margin-left:auto;text-align:right}
+/* Material card recomendado */
+.vd-card.recommended .vd-card-row{background:#f0f7ef}
+.vd-card.recommended{border-left:3px solid #5c7a3e}
+.rec-badge-green{font-size:9px;letter-spacing:.05em;text-transform:uppercase;background:#5c7a3e;color:#fff;padding:2px 7px;border-radius:3px;font-weight:500}
+
+</style>
+</head>
+<body>
+
+<div class="banner"><span>Nuevo</span> — Serie Aero: ultraligero, desde $95 · Envío gratis · Devoluciones en 30 días</div>
+<nav>
+  <img class="nav-logo" src="logo-losada.png" alt="Ópticas Losada" onclick="goTo('home')" onerror="this.style.display='none';document.getElementById('navtxt').style.display='block'">
+  <span id="navtxt" style="display:none;font-family:'Playfair Display',serif;font-size:18px;font-weight:600;cursor:pointer" onclick="goTo('home')">Ópticas Losada</span>
+  <div class="nav-links">
+    <a onclick="goTo('home')">Inicio</a>
+    <a onclick="goTo('aero')">Serie Aero</a>
+    <a onclick="goTo('home')">Lentes de sol</a>
+    <a onclick="goTo('home')">Contactos</a>
+  </div>
+  <div style="display:flex;gap:1rem;align-items:center">
+    <button class="btn-nav">Quiz de estilo</button>
+    <button class="cart-btn" onclick="goTo('checkout')">🛍<span class="cart-badge" id="cartBadge">1</span></button>
+  </div>
+</nav>
+
+<!-- ===== INICIO ===== -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">Nueva colección — Temporada 2026</div>
+      <h1 class="hero-title">Claridad en<br>cada <em>detalle</em></h1>
+      <p class="hero-sub">Lentes de prescripción de alta calidad desde $95. Diseño pensado para durar, con materiales que importan.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="goTo('aero')">Ver Serie Aero</button>
+        <button class="btn-secondary">Quiz de estilo</button>
+      </div>
+    </div>
+    <div class="hero-img">
+      <svg width="220" height="90" viewBox="0 0 280 120"><rect x="10" y="25" width="110" height="70" rx="20" fill="none" stroke="#c9a96e" stroke-width="5"/><rect x="160" y="25" width="110" height="70" rx="20" fill="none" stroke="#c9a96e" stroke-width="5"/><line x1="120" y1="60" x2="160" y2="60" stroke="#c9a96e" stroke-width="3"/><line x1="5" y1="40" x2="10" y2="40" stroke="#c9a96e" stroke-width="3"/><line x1="270" y1="40" x2="275" y2="40" stroke="#c9a96e" stroke-width="3"/></svg>
+      <div class="hero-price">Desde $95 · Con lentes recetados</div>
+    </div>
+  </div>
+  <div class="perks">
+    <div class="perk">Envío gratuito</div>
+    <div class="perk">30 días para devolver</div>
+    <div class="perk">Prueba virtual en la app</div>
+    <div class="perk">Seguro de visión aceptado</div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">Nuevos arrivals</h2>
+      <span class="section-link" onclick="goTo('aero')">Ver todos</span>
+    </div>
+    <div class="products">
+      <div class="product-card" onclick="goTo('product')">
+        <div class="product-badge">Nuevo</div>
+        <div class="product-frame"><svg viewBox="0 0 180 80" width="100"><rect x="5" y="15" width="75" height="50" rx="14" fill="none" stroke="#2d3561" stroke-width="3.5"/><rect x="100" y="15" width="75" height="50" rx="14" fill="none" stroke="#2d3561" stroke-width="3.5"/><line x1="80" y1="40" x2="100" y2="40" stroke="#2d3561" stroke-width="2.5"/></svg></div>
+        <div class="product-name">Boaz</div><div class="product-color">Azul marino</div><div class="product-price">Desde $95</div>
+      </div>
+      <div class="product-card" onclick="goTo('product')">
+        <div class="product-frame"><svg viewBox="0 0 180 80" width="100"><rect x="5" y="20" width="78" height="42" rx="8" fill="none" stroke="#6b4c3b" stroke-width="3.5"/><rect x="97" y="20" width="78" height="42" rx="8" fill="none" stroke="#6b4c3b" stroke-width="3.5"/><line x1="83" y1="41" x2="97" y2="41" stroke="#6b4c3b" stroke-width="2.5"/></svg></div>
+        <div class="product-name">Franny</div><div class="product-color">Tortoise</div><div class="product-price">Desde $95</div>
+      </div>
+      <div class="product-card" onclick="goTo('product')">
+        <div class="product-badge">Bestseller</div>
+        <div class="product-frame"><svg viewBox="0 0 180 80" width="100"><ellipse cx="44" cy="41" rx="39" ry="26" fill="none" stroke="#3d3d3d" stroke-width="3.5"/><ellipse cx="136" cy="41" rx="39" ry="26" fill="none" stroke="#3d3d3d" stroke-width="3.5"/><line x1="83" y1="41" x2="97" y2="41" stroke="#3d3d3d" stroke-width="2.5"/></svg></div>
+        <div class="product-name">Carlton</div><div class="product-color">Negro jet</div><div class="product-price">Desde $95</div>
+      </div>
+      <div class="product-card" onclick="goTo('aero')">
+        <div class="product-frame"><svg viewBox="0 0 180 80" width="100"><rect x="5" y="18" width="80" height="44" rx="22" fill="none" stroke="#5c7a3e" stroke-width="3.5"/><rect x="95" y="18" width="80" height="44" rx="22" fill="none" stroke="#5c7a3e" stroke-width="3.5"/><line x1="85" y1="40" x2="95" y2="40" stroke="#5c7a3e" stroke-width="2.5"/></svg></div>
+        <div class="product-name">Simone</div><div class="product-color">Verde botella</div><div class="product-price">Desde $95</div>
+      </div>
+    </div>
+  </div>
+  <div class="aero-banner">
+    <div class="eyebrow" style="color:#8a9fd4">Nueva colección</div>
+    <div class="aero-title">Serie <em>Aero</em> — ultralivianos</div>
+    <p class="aero-sub">Marcos de titanio de 7g en promedio, diseñados para todo el día.</p>
+    <button class="aero-cta" onclick="goTo('aero')">Ver Serie Aero →</button>
+  </div>
+  <div class="split">
+    <div class="split-panel split-a"><div class="split-ey light">Contactos</div><div class="split-h light">Lentes de contacto también disponibles</div></div>
+    <div class="split-panel split-b"><div class="split-ey dark">Lentes de sol</div><div class="split-h dark">El verano en foco</div></div>
+  </div>
+  <footer><img src="logo-losada.png" alt="" onerror="this.style.display='none'"><span>Anteojos de diseño a precios que no necesitan receta para leerse.</span></footer>
+</div>
+
+<!-- ===== SERIE AERO ===== -->
+<div id="page-aero" class="page">
+  <div class="aero-hero">
+    <div class="eyebrow" style="color:#8a9fd4">Nueva colección</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:34px;font-weight:400;margin-bottom:.5rem;color:#fff">Serie <em style="font-style:italic;color:#c9a96e">Aero</em></h1>
+    <p style="font-size:14px;color:#c5cce8;line-height:1.6;max-width:440px;font-weight:300">Marcos de titanio ultralivianos. Nuevo estándar de comodidad para todo el día.</p>
+  </div>
+  <div class="aero-specs">
+    <div class="aero-spec"><div class="aero-spec-val">7g</div><div class="aero-spec-lbl">Peso promedio</div></div>
+    <div class="aero-spec"><div class="aero-spec-val">Ti</div><div class="aero-spec-lbl">Titanio premium</div></div>
+    <div class="aero-spec"><div class="aero-spec-val">$95</div><div class="aero-spec-lbl">Con lentes recetados</div></div>
+  </div>
+  <div class="aero-grid">
+    <div class="aero-card" onclick="goTo('product')">
+      <div class="aero-badge">Aero</div>
+      <div class="aero-frame"><svg viewBox="0 0 180 80" width="130"><rect x="5" y="22" width="75" height="36" rx="18" fill="none" stroke="#2d3561" stroke-width="2.5"/><rect x="100" y="22" width="75" height="36" rx="18" fill="none" stroke="#2d3561" stroke-width="2.5"/><line x1="80" y1="40" x2="100" y2="40" stroke="#2d3561" stroke-width="2"/><line x1="0" y1="30" x2="5" y2="30" stroke="#2d3561" stroke-width="1.5"/><line x1="175" y1="30" x2="180" y2="30" stroke="#2d3561" stroke-width="1.5"/></svg></div>
+      <div class="aero-name">Aero Lin</div><div class="aero-color">Titanio plata</div><div class="aero-weight">6.8g · ultraliviano</div><div class="product-price">Desde $95</div>
+    </div>
+    <div class="aero-card" onclick="goTo('product')">
+      <div class="aero-badge">Aero</div>
+      <div class="aero-frame"><svg viewBox="0 0 180 80" width="130"><rect x="5" y="20" width="75" height="40" rx="10" fill="none" stroke="#6b4c3b" stroke-width="2.5"/><rect x="100" y="20" width="75" height="40" rx="10" fill="none" stroke="#6b4c3b" stroke-width="2.5"/><line x1="80" y1="40" x2="100" y2="40" stroke="#6b4c3b" stroke-width="2"/><line x1="0" y1="28" x2="5" y2="28" stroke="#6b4c3b" stroke-width="1.5"/><line x1="175" y1="28" x2="180" y2="28" stroke="#6b4c3b" stroke-width="1.5"/></svg></div>
+      <div class="aero-name">Aero Wren</div><div class="aero-color">Titanio bronce</div><div class="aero-weight">7.2g · ultraliviano</div><div class="product-price">Desde $95</div>
+    </div>
+    <div class="aero-card" onclick="goTo('product')">
+      <div class="aero-badge">Aero</div>
+      <div class="aero-frame"><svg viewBox="0 0 180 80" width="130"><ellipse cx="44" cy="40" rx="36" ry="22" fill="none" stroke="#3d3d3d" stroke-width="2.5"/><ellipse cx="136" cy="40" rx="36" ry="22" fill="none" stroke="#3d3d3d" stroke-width="2.5"/><line x1="80" y1="40" x2="100" y2="40" stroke="#3d3d3d" stroke-width="2"/><line x1="3" y1="32" x2="8" y2="32" stroke="#3d3d3d" stroke-width="1.5"/><line x1="172" y1="32" x2="177" y2="32" stroke="#3d3d3d" stroke-width="1.5"/></svg></div>
+      <div class="aero-name">Aero Nico</div><div class="aero-color">Titanio negro mate</div><div class="aero-weight">7.5g · ultraliviano</div><div class="product-price">Desde $95</div>
+    </div>
+  </div>
+  <div style="padding:1.5rem 2rem;text-align:center"><button class="btn-secondary" onclick="goTo('home')">← Volver al inicio</button></div>
+  <footer><img src="logo-losada.png" alt="" onerror="this.style.display='none'"><span>Ópticas Losada</span></footer>
+</div>
+
+<!-- ===== PRODUCTO + WIZARD ===== -->
+<div id="page-product" class="page">
+  <div class="product-page">
+    <div class="product-visual">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem">
+        <svg width="230" height="96" viewBox="0 0 280 120"><rect x="10" y="28" width="110" height="64" rx="32" fill="none" stroke="#c9c9c9" stroke-width="4"/><rect x="160" y="28" width="110" height="64" rx="32" fill="none" stroke="#c9c9c9" stroke-width="4"/><line x1="120" y1="60" x2="160" y2="60" stroke="#c9c9c9" stroke-width="3"/><line x1="5" y1="42" x2="10" y2="42" stroke="#c9c9c9" stroke-width="2.5"/><line x1="270" y1="42" x2="275" y2="42" stroke="#c9c9c9" stroke-width="2.5"/></svg>
+        <div style="font-family:'Playfair Display',serif;font-size:12px;color:#8a9fd4;letter-spacing:.1em;text-transform:uppercase">Aero Lin · Titanio plata</div>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="eyebrow">Serie Aero</div>
+      <div class="product-page-name">Aero Lin</div>
+      <div class="product-meta-txt">Titanio · 6.8g · Marco rectangular</div>
+      <div class="colors">
+        <div class="color-dot active" style="background:#c9c9c9" title="Plata"></div>
+        <div class="color-dot" style="background:#6b4c3b" title="Bronce"></div>
+        <div class="color-dot" style="background:#2d2d2d" title="Negro mate"></div>
+      </div>
+      <div class="running-price" id="running-price">$95</div>
+
+      <!-- ===== WIZARD CRISTALES ===== -->
+      <div class="wz" id="wizard">
+        <div class="wz-head">
+          <div class="wz-head-eye">Configurá tus cristales</div>
+          <div class="wz-head-name" id="wz-head-name">Paso 1 de 4 — Tipo de uso</div>
+        </div>
+
+        <div class="wz-progress" id="wz-progress">
+          <div class="wz-prog-step active" id="prog0"><div class="wz-prog-dot">1</div><span>Uso</span></div>
+          <div class="wz-prog-line"></div>
+          <div class="wz-prog-step" id="prog1"><div class="wz-prog-dot">2</div><span>Receta</span></div>
+          <div class="wz-prog-line"></div>
+          <div class="wz-prog-step" id="prog2"><div class="wz-prog-dot">3</div><span>Material</span></div>
+          <div class="wz-prog-line"></div>
+          <div class="wz-prog-step" id="prog3"><div class="wz-prog-dot">4</div><span>Extras</span></div>
+        </div>
+
+        <!-- PASO 0: Uso -->
+        <div class="wz-page-inner active" id="wp0">
+          <div class="wz-page-title">¿Qué tipo de lentes necesitás?</div>
+          <div class="wz-page-sub">Elegí según para qué vas a usar tus anteojos.</div>
+          <div class="vd-cards">
+
+            <div class="vd-card" id="vc-lejana" onclick="vdSelect('lejana',0,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">🏔️</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Visión lejana <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-lejana')">?</button></div>
+                  <div class="vd-desc">Lentes de uso diario para ver objetos lejanos.</div>
+                </div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-lejana">
+                <div class="vd-tooltip-img">🏔️</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Visión lejana (Miopía)</div>
+                  <div class="vd-tooltip-text">Son necesarios cuando los objetos cercanos se ven claros pero los distantes aparecen borrosos. Solo proporcionan un rango de potencia y no tienen zona de lectura.</div>
+                  <div class="vd-tooltip-rec">💡 Ideal si tu receta tiene solo esfera negativa (ej. -2.50)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-prog" onclick="vdSelect('prog',0,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">📚</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Progresivos <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-prog')">?</button></div>
+                  <div class="vd-desc">Lentes para ver de cerca, a lo lejos y en distancias intermedias.</div>
+                </div>
+                <div class="vd-price-tag" style="font-size:11px;color:#c9a96e">+$150</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-prog">
+                <div class="vd-tooltip-img">📚</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Progresivos</div>
+                  <div class="vd-tooltip-text">Te ayudan a ver objetos a todas las distancias. Ofrecen una transición suave entre la visión de lejos, intermedia y de cerca, brindándote la comodidad de un solo par.</div>
+                  <div class="vd-tooltip-rec">💡 Recomendado si tenés más de 45 años o tu receta tiene adición (ADD)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-lectura" onclick="vdSelect('lectura',0,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">📖</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Lectura <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-lectura')">?</button></div>
+                  <div class="vd-desc">Lentes para leer de cerca.</div>
+                </div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-lectura">
+                <div class="vd-tooltip-img">📖</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Lectura</div>
+                  <div class="vd-tooltip-text">Te brindan una visión clara y nítida para leer y realizar otras actividades de cerca, como escribir, dibujar o usar tu teléfono.</div>
+                  <div class="vd-tooltip-rec">💡 Podés usar tu propia receta o elegir un par de lectores listos para usar</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-ocup" onclick="vdSelect('ocup',0,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">🖥️</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Ocupacional <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-ocup')">?</button></div>
+                  <div class="vd-desc">Para trabajar en la computadora y ver a distancias intermedias.</div>
+                </div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-ocup">
+                <div class="vd-tooltip-img">🖥️</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Ocupacional</div>
+                  <div class="vd-tooltip-text">Lentes de doble enfoque que proporcionan una visión clara a distancias cercanas e intermedias (hasta 80 cm). Ideales para largas horas en la computadora. También conocidos como progresivos de oficina.</div>
+                  <div class="vd-tooltip-rec">⚠️ No son adecuados para visión de lejos ni para conducir</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-sin" onclick="vdSelect('sin',0,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">🕶️</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Sin Prescripción <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-sin')">?</button></div>
+                  <div class="vd-desc">Lentes transparentes sin corrección, solo para moda.</div>
+                </div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-sin">
+                <div class="vd-tooltip-img">🕶️</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Sin Prescripción</div>
+                  <div class="vd-tooltip-text">Los lentes sin prescripción no ofrecen corrección visual, pero pueden usarse como accesorio de moda. No necesitás receta para ellos.</div>
+                  <div class="vd-tooltip-rec">💡 Cristal plano incluido sin costo extra</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-solo" onclick="vdSelect('solo',0,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">🖼️</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Solo el marco <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-solo')">?</button></div>
+                  <div class="vd-desc">Sin cristales — los ponés en tu óptica local.</div>
+                </div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-solo">
+                <div class="vd-tooltip-img">🖼️</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Solo el marco</div>
+                  <div class="vd-tooltip-text">Si ya tenés una óptica de confianza o querés reutilizar tus cristales actuales, podés comprar solo el marco y llevarlo a montar donde prefieras.</div>
+                  <div class="vd-tooltip-rec">💡 Precio: $95 — solo el marco, sin cristales incluidos</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PASO 1: Receta -->
+        <div class="wz-page-inner" id="wp1">
+          <div class="wz-page-title">Ingresá tu prescripción</div>
+          <div class="rx-hint">📋 Copiá los valores exactos de tu receta óptica. El sistema calculará automáticamente el material recomendado.</div>
+
+          <!-- Errores de validación -->
+          <div class="rx-error" id="rx-error-sph" style="display:none">⚠️ <strong>Esfera:</strong> El valor debe estar entre -20.00 y +20.00</div>
+          <div class="rx-error" id="rx-error-cyl" style="display:none">⚠️ <strong>Cilindro:</strong> El valor debe estar entre -6.00 y +6.00</div>
+          <div class="rx-error" id="rx-error-ax" style="display:none">⚠️ <strong>Eje:</strong> Solo se requiere si hay Cilindro. Rango válido: 0–180</div>
+          <div class="rx-error" id="rx-error-dp" style="display:none">⚠️ <strong>DP:</strong> La distancia pupilar debe estar entre 50 y 80 mm</div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+            <!-- OD -->
+            <div>
+              <div class="rx-eye-head">Ojo derecho (OD)</div>
+              <div class="rx-form">
+                <div class="rx-field">
+                  <label>Esfera (SPH)</label>
+                  <input class="rx-input" id="sph-od" placeholder="+0.00" type="text" oninput="rxLiveValidate()">
+                  <div class="rx-field-hint">Negativo = miopía · Positivo = hipermetropía</div>
+                </div>
+                <div class="rx-field">
+                  <label>Cilindro (CYL)</label>
+                  <input class="rx-input" id="cyl-od" placeholder="0.00" type="text" oninput="rxLiveValidate()">
+                  <div class="rx-field-hint">Astigmatismo. Puede ser 0</div>
+                </div>
+                <div class="rx-field">
+                  <label>Eje (AXIS)</label>
+                  <input class="rx-input" id="ax-od" placeholder="0–180" type="text" oninput="rxLiveValidate()" id="ax-od">
+                  <div class="rx-field-hint">Solo si CYL ≠ 0</div>
+                </div>
+                <div class="rx-field" id="add-od-wrap" style="display:none">
+                  <label>Adición (ADD)</label>
+                  <input class="rx-input" id="add-od" placeholder="+1.00" type="text">
+                  <div class="rx-field-hint">Solo para progresivos</div>
+                </div>
+              </div>
+            </div>
+            <!-- OI -->
+            <div>
+              <div class="rx-eye-head">Ojo izquierdo (OI)</div>
+              <div class="rx-form">
+                <div class="rx-field">
+                  <label>Esfera (SPH)</label>
+                  <input class="rx-input" id="sph-oi" placeholder="+0.00" type="text" oninput="rxLiveValidate()">
+                </div>
+                <div class="rx-field">
+                  <label>Cilindro (CYL)</label>
+                  <input class="rx-input" id="cyl-oi" placeholder="0.00" type="text" oninput="rxLiveValidate()">
+                </div>
+                <div class="rx-field">
+                  <label>Eje (AXIS)</label>
+                  <input class="rx-input" id="ax-oi" placeholder="0–180" type="text" oninput="rxLiveValidate()">
+                </div>
+                <div class="rx-field" id="add-oi-wrap" style="display:none">
+                  <label>Adición (ADD)</label>
+                  <input class="rx-input" id="add-oi" placeholder="+1.00" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DP -->
+          <div style="margin-bottom:1rem">
+            <div class="rx-eye-head">Distancia Pupilar (DP)</div>
+            <div style="display:flex;align-items:center;gap:.75rem;margin-top:.5rem">
+              <input class="rx-input" id="dp" placeholder="ej. 63" type="text" style="max-width:100px" oninput="rxLiveValidate()">
+              <div style="font-size:11.5px;color:#5a5045">mm · Rango normal: 55–75 mm<br><span style="color:#8a8a8a;font-size:10.5px">Podés medirla con la app de tu celular o consultarla en tu receta</span></div>
+            </div>
+          </div>
+
+          <!-- EE Preview -->
+          <div class="ee-preview" id="ee-preview" style="display:none">
+            <div class="ee-preview-title">📊 Equivalente Esférico calculado</div>
+            <div class="ee-preview-body">
+              <div class="ee-eye"><span class="ee-label">OD</span><span class="ee-val" id="ee-od">—</span></div>
+              <div class="ee-eye"><span class="ee-label">OI</span><span class="ee-val" id="ee-oi">—</span></div>
+              <div class="ee-rec" id="ee-rec-text">→ Se calculará el material recomendado</div>
+            </div>
+          </div>
+
+          <!-- Skip -->
+          <div class="rx-skip" onclick="skipRx()">
+            📄 No tengo mi receta ahora — la envío después por WhatsApp o email
+          </div>
+        </div>
+
+        <!-- PASO 2: Material -->
+        <div class="wz-page-inner" id="wp2">
+          <div class="wz-page-title">Elegí el grosor del cristal</div>
+          <div class="wz-page-sub">A mayor índice, el cristal es más delgado y liviano. El sistema sugiere según tu graduación.</div>
+          <div class="vd-cards">
+
+            <div class="vd-card" id="vc-std" onclick="vdSelect('std',2,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">💧</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Estándar 1.50 <span class="inc-badge">Gratis</span> <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-std')">?</button></div>
+                  <div class="vd-desc">Para graduaciones hasta ±2.00</div>
+                </div>
+                <div class="vd-price-tag">incluido</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-std">
+                <div class="vd-tooltip-img">💧</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Cristal Estándar 1.50</div>
+                  <div class="vd-tooltip-text">El cristal estándar de la industria. Incluido sin costo adicional. Incluye antirreflejo, resistencia a rayones y protección UV completa.</div>
+                  <div class="vd-tooltip-rec">💡 Recomendado: Esfera 0 a ±2.00, Cilindro hasta ±1.50</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-161" onclick="vdSelect('hi161',2,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">🔹</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Fino 1.61 <span class="rec-badge" id="rec-161" style="display:none">Recomendado</span> <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-161')">?</button></div>
+                  <div class="vd-desc">20% más delgado — graduaciones ±2.25 a ±4.00</div>
+                </div>
+                <div class="vd-price-tag">+$40</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-161">
+                <div class="vd-tooltip-img">🔹</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Alto índice 1.61</div>
+                  <div class="vd-tooltip-text">20% más delgado que el estándar. Mejor estética: el cristal no sobresale del marco. Incluye antirreflejo premium y protección UV.</div>
+                  <div class="vd-tooltip-rec">💡 Recomendado: Esfera ±2.25 a ±4.00, Cilindro ±1.75 a ±2.50</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-167" onclick="vdSelect('hi167',2,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">🔷</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Extra fino 1.67 <span class="rec-badge" id="rec-167" style="display:none">Recomendado</span> <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-167')">?</button></div>
+                  <div class="vd-desc">35% más delgado — graduaciones ±4.25 a ±6.75</div>
+                </div>
+                <div class="vd-price-tag">+$60</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-167">
+                <div class="vd-tooltip-img">🔷</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Alto índice 1.67</div>
+                  <div class="vd-tooltip-text">35% más delgado. El efecto "ojo de pez" por graduaciones altas se reduce notablemente. Muy recomendado para marcos tipo Aero Lin por su delgadez.</div>
+                  <div class="vd-tooltip-rec">💡 Recomendado: Esfera ±4.25 a ±6.75, Cilindro ±2.75 a ±3.50</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-174" onclick="vdSelect('hi174',2,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">💎</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Ultra fino 1.74 <span class="rec-badge" id="rec-174" style="display:none">Recomendado</span> <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-174')">?</button></div>
+                  <div class="vd-desc">Lo más delgado posible — graduaciones ±7.00+</div>
+                </div>
+                <div class="vd-price-tag">+$90</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-174">
+                <div class="vd-tooltip-img">💎</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Alto índice 1.74</div>
+                  <div class="vd-tooltip-text">La tecnología más avanzada del mercado. Hasta 50% más delgado que el estándar. Prácticamente elimina el efecto de "lupa" o "ojo de pez".</div>
+                  <div class="vd-tooltip-rec">💡 Recomendado: Esfera ±7.00 o superior, Cilindro ±3.75 o más</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PASO 3: Extras -->
+        <div class="wz-page-inner" id="wp3">
+          <div class="wz-page-title">Tratamientos adicionales</div>
+          <div class="wz-page-sub">El antirreflejo ya está incluido en todos los cristales.</div>
+          <div class="vd-cards">
+
+            <div class="vd-card" id="vc-noext" onclick="vdSelect('none',3,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">✅</div>
+                <div class="vd-texts">
+                  <div class="vd-title">Solo antirreflejo <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-noext')">?</button></div>
+                  <div class="vd-desc">Incluido sin costo en todos los cristales</div>
+                </div>
+                <div class="vd-price-tag">incluido</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-noext">
+                <div class="vd-tooltip-img">✅</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Antirreflejo</div>
+                  <div class="vd-tooltip-text">Elimina los reflejos de luz en la superficie del cristal. Mejora la visión nocturna, reduce la fatiga ocular y da una apariencia más natural.</div>
+                  <div class="vd-tooltip-rec">💡 Incluido gratis en todos los cristales de Ópticas Losada</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-blue" onclick="vdSelect('blue',3,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">📱</div>
+                <div class="vd-texts">
+                  <div class="vd-title">+ Filtro luz azul <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-blue')">?</button></div>
+                  <div class="vd-desc">Reduce la fatiga visual frente a pantallas digitales</div>
+                </div>
+                <div class="vd-price-tag">+$30</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-blue">
+                <div class="vd-tooltip-img">📱</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Filtro luz azul</div>
+                  <div class="vd-tooltip-text">Filtra la luz azul de alta energía emitida por pantallas (celular, computador, TV). Reduce la fatiga visual, el ardor y puede mejorar la calidad del sueño.</div>
+                  <div class="vd-tooltip-rec">💡 Recomendado si pasás más de 4 horas diarias frente a pantallas</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-foto" onclick="vdSelect('foto',3,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">🌤️</div>
+                <div class="vd-texts">
+                  <div class="vd-title">+ Fotocromático <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-foto')">?</button></div>
+                  <div class="vd-desc">Se oscurece con el sol — perfecto para interior y exterior</div>
+                </div>
+                <div class="vd-price-tag">+$80</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-foto">
+                <div class="vd-tooltip-img">🌤️</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Fotocromático (Transitions)</div>
+                  <div class="vd-tooltip-text">En interiores: completamente transparente. En exteriores: se oscurece en 30–60 segundos. Bloquea 100% de rayos UV en todas sus fases.</div>
+                  <div class="vd-tooltip-rec">⚠️ No se oscurece dentro del auto (el parabrisas filtra los UV)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vd-card" id="vc-tint" onclick="vdSelect('tint',3,this)">
+              <div class="vd-card-row">
+                <div class="vd-icon">☀️</div>
+                <div class="vd-texts">
+                  <div class="vd-title">+ Tintado solar con receta <button class="qbtn" onclick="event.stopPropagation();vdToggleTip('tip-tint')">?</button></div>
+                  <div class="vd-desc">Cristal oscuro permanente con tu graduación incluida</div>
+                </div>
+                <div class="vd-price-tag">+$60</div>
+                <div class="vd-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              </div>
+              <div class="vd-tooltip" id="tip-tint">
+                <div class="vd-tooltip-img">☀️</div>
+                <div class="vd-tooltip-body">
+                  <div class="vd-tooltip-title">Tintado solar con receta</div>
+                  <div class="vd-tooltip-text">Cristal permanentemente oscuro (color gris o marrón) que incluye tu graduación. Protección UV total. Ideal para usar como lente de sol recetado.</div>
+                  <div class="vd-tooltip-rec">💡 La mejor opción para quienes necesitan corrección visual y lente de sol en uno</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PASO 4: Confirmación -->
+        <div class="wz-page-inner" id="wp4">
+          <div class="wz-confirm-box">
+            <div class="wz-confirm-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5c7a3e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="wz-confirm-title">Configuración lista</div>
+            <div class="wz-confirm-sub">Revisá el resumen antes de agregar al carrito.</div>
+            <div class="wz-confirm-detail" id="wz-detail"></div>
+            <button class="wz-add-btn" onclick="addToCart()">Agregar al carrito →</button>
+          </div>
+        </div>
+
+        <div class="wz-summary-bar">
+          <div><div class="wz-summary-lbl">Total estimado</div></div>
+          <div class="wz-summary-total" id="wz-total">$95</div>
+        </div>
+        <div class="wz-nav" id="wz-nav">
+          <button class="wz-back" id="wz-back-btn" onclick="wzPrev()" style="display:none">← Atrás</button>
+          <button class="wz-next" id="wz-next-btn" onclick="wzNext()" disabled>Continuar →</button>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-bottom:1.5rem"><button class="btn-secondary" onclick="goTo('aero')" style="font-size:12px;padding:8px 16px">← Volver a Serie Aero</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHECKOUT ===== -->
+<div id="page-checkout" class="page">
+  <div class="checkout-page">
+    <div class="checkout-title">Finalizar compra</div>
+    <div class="checkout-sub">Revisá tu pedido y completá tus datos.</div>
+    <div class="order-item">
+      <div class="order-frame"><svg viewBox="0 0 180 80" width="62"><rect x="5" y="22" width="75" height="36" rx="18" fill="none" stroke="#9a9a9a" stroke-width="3"/><rect x="100" y="22" width="75" height="36" rx="18" fill="none" stroke="#9a9a9a" stroke-width="3"/><line x1="80" y1="40" x2="100" y2="40" stroke="#9a9a9a" stroke-width="2"/></svg></div>
+      <div><div class="order-name">Aero Lin · Titanio plata</div><div class="order-meta" id="checkout-meta">—</div><div style="font-size:13px;font-weight:500;margin-top:4px" id="checkout-price">$95</div></div>
+    </div>
+    <div class="form-group"><label class="form-label">Nombre completo</label><input class="form-input" type="text" placeholder="Tu nombre"></div>
+    <div class="form-group"><label class="form-label">Dirección de envío</label><input class="form-input" type="text" placeholder="Calle, número, ciudad"></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Receta</label><input class="form-input" type="text" placeholder="Subir o ingresar"></div>
+      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="tu@email.com"></div>
+    </div>
+    <div class="summary-box">
+      <div class="sum-row"><span>Aero Lin (marco)</span><span>$95</span></div>
+      <div id="co-rows"></div>
+      <div class="sum-row"><span>Envío</span><span>Gratis</span></div>
+      <div class="sum-row total"><span>Total</span><span id="co-total">$95</span></div>
+    </div>
+    <button class="confirm-btn" onclick="goTo('confirm')">Confirmar pedido →</button>
+    <div class="secure-note">🔒 Pago seguro · Devoluciones en 30 días</div>
+    <div style="text-align:center;margin-top:.75rem"><button class="btn-secondary" onclick="goTo('product')" style="font-size:12px;padding:8px 16px">← Volver al producto</button></div>
+  </div>
+</div>
+
+<!-- ===== CONFIRMACIÓN ===== -->
+<div id="page-confirm" class="page">
+  <div class="confirm-page">
+    <div class="confirm-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5c7a3e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="confirm-title">¡Pedido confirmado!</div>
+    <p class="confirm-sub">Tus Aero Lin están en camino. Recibirás un email de seguimiento en las próximas 24 horas.<br><br>Tiempo estimado: <strong>5–7 días hábiles</strong>.</p>
+    <button class="btn-primary" onclick="goTo('home');wzReset()">Volver al inicio</button>
+  </div>
+</div>
+
+<script>
+// ===== NAVEGACION =====
+function goTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ===== TOOLTIP INLINE =====
+function vdToggleTip(id){
+  const tip = document.getElementById(id);
+  const isOpen = tip.classList.contains('open');
+  document.querySelectorAll('.vd-tooltip').forEach(t=>t.classList.remove('open'));
+  if(!isOpen) tip.classList.add('open');
+}
+
+// ===== WIZARD STATE =====
+const BASE = 95;
+let wzStep = 0;
+let wzSel = {0:null,1:null,2:null,3:null};
+let wzPrices = {0:0,1:0,2:0,3:0};
+let wzLabels = {0:'',1:'',2:'',3:''};
+
+const stepPrices = {
+  // uso
+  'lejana':{price:0,label:'Visión lejana'},
+  'prog':{price:150,label:'Progresivos'},
+  'lectura':{price:0,label:'Lectura'},
+  'ocup':{price:80,label:'Ocupacional'},
+  'sin':{price:0,label:'Sin prescripción'},
+  'solo':{price:0,label:'Solo el marco'},
+  // material
+  'std':{price:0,label:'Cristal estándar 1.50'},
+  'hi161':{price:40,label:'Fino 1.61'},
+  'hi167':{price:60,label:'Extra fino 1.67'},
+  'hi174':{price:90,label:'Ultra fino 1.74'},
+  // extras
+  'none':{price:0,label:'Antirreflejo incluido'},
+  'blue':{price:30,label:'Filtro luz azul'},
+  'foto':{price:80,label:'Fotocromático'},
+  'tint':{price:60,label:'Tintado solar con receta'},
+};
+
+function vdSelect(val, step, el){
+  // Deselect all in this step
+  document.querySelectorAll('#wp'+step+' .vd-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  wzSel[step] = val;
+  const d = stepPrices[val] || {price:0,label:val};
+  wzPrices[step] = d.price;
+  wzLabels[step] = d.label;
+  wzUpdateTotal();
+  document.getElementById('wz-next-btn').disabled = false;
+}
+
+function wzUpdateTotal(){
+  let t = BASE;
+  Object.values(wzPrices).forEach(p=>t+=p||0);
+  document.getElementById('wz-total').textContent='$'+t;
+  document.getElementById('running-price').textContent='$'+t;
+}
+
+// ===== EQUIVALENTE ESFÉRICO Y VALIDACIÓN (Manual Técnico v3) =====
+const LENS_RULES = {
+  materials: [
+    { id:'std',   name:'Estándar 1.50', min:0,    max:2.00,  price:0,   priceLabel:'incluido', eeLabel:'Receta leve (hasta ±2.00 EE)' },
+    { id:'hi161', name:'Fino 1.61',     min:2.25,  max:4.00,  price:40,  priceLabel:'+$40',    eeLabel:'Receta moderada (±2.25–4.00 EE)' },
+    { id:'hi167', name:'Extra fino 1.67',min:4.25, max:6.00,  price:60,  priceLabel:'+$60',    eeLabel:'Receta alta (±4.25–6.00 EE)' },
+    { id:'hi174', name:'Ultra fino 1.74',min:6.01, max:20.00, price:90,  priceLabel:'+$90',    eeLabel:'Receta muy alta (> ±6.00 EE)' },
+  ],
+  calcEE: (sph, cyl) => Math.abs(parseFloat(sph)||0) + (Math.abs(parseFloat(cyl)||0) / 2),
+  recommend: (sph, cyl) => {
+    const ee = LENS_RULES.calcEE(sph, cyl);
+    return LENS_RULES.materials.find(m => ee >= m.min && ee <= m.max) || LENS_RULES.materials[3];
+  }
+};
+
+let lastRecommendedId = null;
+
+function validateRx(eye) {
+  const errors = {};
+  const sph = parseFloat(eye.sph);
+  const cyl = parseFloat(eye.cyl||0);
+  const axis = parseInt(eye.axis||0);
+  if (isNaN(sph) || Math.abs(sph) > 20) errors.sph = 'Esfera fuera de rango (±20.00)';
+  if (!isNaN(cyl) && Math.abs(cyl) > 6) errors.cyl = 'Cilindro fuera de rango (±6.00)';
+  if (cyl !== 0 && (axis < 0 || axis > 180)) errors.axis = 'Eje inválido — rango 0 a 180';
+  return { isValid: Object.keys(errors).length === 0, errors };
+}
+
+function rxLiveValidate() {
+  const sphOD = document.getElementById('sph-od').value;
+  const cylOD = document.getElementById('cyl-od').value;
+  const sphOI = document.getElementById('sph-oi').value;
+  const cylOI = document.getElementById('cyl-oi').value;
+  const dpVal = document.getElementById('dp').value;
+
+  // Hide all errors first
+  ['rx-error-sph','rx-error-cyl','rx-error-ax','rx-error-dp'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+
+  let hasAnyValue = sphOD||cylOD||sphOI||cylOI;
+  if(!hasAnyValue){ document.getElementById('ee-preview').style.display='none'; return; }
+
+  // Validate
+  const vOD = validateRx({sph:sphOD, cyl:cylOD, axis:document.getElementById('ax-od').value});
+  const vOI = validateRx({sph:sphOI, cyl:cylOI, axis:document.getElementById('ax-oi').value});
+  if(!vOD.isValid||!vOI.isValid){
+    if(vOD.errors.sph||vOI.errors.sph) document.getElementById('rx-error-sph').style.display='block';
+    if(vOD.errors.cyl||vOI.errors.cyl) document.getElementById('rx-error-cyl').style.display='block';
+    if(vOD.errors.axis||vOI.errors.axis) document.getElementById('rx-error-ax').style.display='block';
+  }
+  if(dpVal && (parseFloat(dpVal)<50||parseFloat(dpVal)>80)) document.getElementById('rx-error-dp').style.display='block';
+
+  // Calc EE
+  const eeOD = LENS_RULES.calcEE(sphOD,cylOD);
+  const eeOI = LENS_RULES.calcEE(sphOI,cylOI);
+  const maxEE = Math.max(eeOD,eeOI);
+  const recommended = LENS_RULES.recommend(sphOD||sphOI, cylOD||cylOI);
+
+  // Show EE preview
+  document.getElementById('ee-preview').style.display='block';
+  document.getElementById('ee-od').textContent = sphOD ? eeOD.toFixed(2) : '—';
+  document.getElementById('ee-oi').textContent = sphOI ? eeOI.toFixed(2) : '—';
+  document.getElementById('ee-rec-text').textContent = '→ Recomendado: ' + recommended.name + ' (' + recommended.eeLabel + ')';
+
+  // Highlight recommended card
+  ['vc-std','vc-161','vc-167','vc-174'].forEach(id=>{
+    const card = document.getElementById(id);
+    if(card){ card.classList.remove('recommended'); }
+  });
+  const idMap = {std:'vc-std',hi161:'vc-161',hi167:'vc-167',hi174:'vc-174'};
+  const recCard = document.getElementById(idMap[recommended.id]);
+  if(recCard) recCard.classList.add('recommended');
+
+  // Update rec badges
+  ['rec-161','rec-167','rec-174'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.style.display='none';
+  });
+  // Add green badge to recommended card title
+  lastRecommendedId = recommended.id;
+}
+
+function recommendIndex(){
+  rxLiveValidate();
+  // Track event
+  trackEvent('lens_step_completed', {step_name:'prescription'});
+}
+
+function skipRx(){
+  wzSel[1]='skip'; wzPrices[1]=0; wzLabels[1]='Receta pendiente';
+  trackEvent('lens_step_completed', {step_name:'prescription_skipped'});
+  wzStep=2; wzShowStep();
+}
+
+// ===== TRACKING (GTM / Analytics) =====
+function trackEvent(event, params) {
+  try {
+    if(window.dataLayer) { window.dataLayer.push({event, ...params}); }
+    console.log('[TRACK]', event, params);
+  } catch(e) {}
+}
+
+// Override vdSelect to add tracking
+const _origVdSelect = vdSelect;
+function vdSelectTracked(val, step, el) {
+  // Track recommendation override on material step
+  if(step===2 && lastRecommendedId && val !== lastRecommendedId) {
+    const recName = (LENS_RULES.materials.find(m=>m.id===lastRecommendedId)||{}).name||lastRecommendedId;
+    const selName = (LENS_RULES.materials.find(m=>m.id===val)||{}).name||val;
+    trackEvent('recommendation_overriden', {recommended: recName, user_selected: selName});
+  }
+  _origVdSelect(val, step, el);
+  // Track step completion
+  const stepNames = {0:'usage_type',2:'material',3:'treatments'};
+  if(stepNames[step]) trackEvent('lens_step_completed', {step_name: stepNames[step], value: val});
+}
+
+function wzNext(){
+  const uso = wzSel[0];
+  // Paso 0: si elige solo marco, sin prescripción → saltar a confirm directamente
+  if(wzStep===0 && (uso==='solo'||uso==='sin')){
+    wzPrices[1]=0; wzPrices[2]=0; wzPrices[3]=0;
+    wzLabels[1]='—'; wzLabels[2]='—'; wzLabels[3]='—';
+    wzStep=4; wzShowStep(); wzBuildConfirm(); return;
+  }
+  // Paso 1 → recomendación de índice
+  if(wzStep===1) recommendIndex();
+  wzStep++;
+  wzShowStep();
+  if(wzStep===4) wzBuildConfirm();
+}
+
+function wzPrev(){
+  const uso = wzSel[0];
+  if(wzStep===4&&(uso==='solo'||uso==='sin')){ wzStep=0; }
+  else { wzStep--; }
+  wzShowStep();
+}
+
+function wzShowStep(){
+  document.querySelectorAll('.wz-page-inner').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('wp'+wzStep);
+  if(pg) pg.classList.add('active');
+  // Progress
+  const steps=['prog0','prog1','prog2','prog3'];
+  steps.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.classList.remove('active','done');
+    if(i<wzStep) el.classList.add('done');
+    else if(i===wzStep) el.classList.add('active');
+  });
+  // Mostrar/ocultar ADD según uso
+  const needsAdd = wzSel[0]==='prog'||wzSel[0]==='ocup';
+  ['add-od-wrap','add-oi-wrap'].forEach(id=>{
+    document.getElementById(id).style.display = needsAdd?'block':'none';
+  });
+  // Nav
+  const nav=document.getElementById('wz-nav');
+  const back=document.getElementById('wz-back-btn');
+  const next=document.getElementById('wz-next-btn');
+  if(wzStep===4){ nav.style.display='none'; }
+  else{
+    nav.style.display='flex';
+    back.style.display=wzStep>0?'block':'none';
+    // Paso 1 (receta) siempre habilitado (puede saltarse)
+    next.disabled = wzStep===1 ? false : (!wzSel[wzStep]);
+  }
+  // Head name
+  const heads=['Paso 1 — Tipo de uso','Paso 2 — Tu prescripción','Paso 3 — Material del cristal','Paso 4 — Tratamientos','¡Listo!'];
+  document.getElementById('wz-head-name').textContent = heads[wzStep]||'';
+}
+
+function wzBuildConfirm(){
+  wzUpdateTotal();
+  let t=BASE; Object.values(wzPrices).forEach(p=>t+=p||0);
+  let html='<div class="wz-row"><span>Marco Aero Lin</span><span>$95</span></div>';
+  [0,1,2,3].forEach(i=>{
+    if(wzLabels[i]&&wzLabels[i]!=='—'&&wzPrices[i]>0){
+      html+=`<div class="wz-row"><span>${wzLabels[i]}</span><span>+$${wzPrices[i]}</span></div>`;
+    } else if(wzLabels[i]&&wzLabels[i]!=='—'&&wzPrices[i]===0&&wzLabels[i]!=='Receta pendiente'){
+      html+=`<div class="wz-row"><span>${wzLabels[i]}</span><span>incluido</span></div>`;
+    }
+  });
+  if(wzLabels[1]==='Receta pendiente') html+=`<div class="wz-row" style="color:#c9a96e"><span>⚠️ Receta pendiente</span><span>enviar después</span></div>`;
+  html+='<div class="wz-row"><span>Envío</span><span>Gratis</span></div>';
+  html+=`<div class="wz-row total"><span>Total</span><span>$${t}</span></div>`;
+  document.getElementById('wz-detail').innerHTML=html;
+}
+
+function addToCart(){
+  // Track cart event
+  let t=BASE; Object.values(wzPrices).forEach(p=>t+=p||0);
+  trackEvent('cart_with_prescription', {
+    lens_id: wzSel[2]||'std',
+    lens_type: wzSel[0]||'unknown',
+    total_lens_price: t,
+    has_prescription: wzSel[1]!=='skip'
+  });
+  let t=BASE; Object.values(wzPrices).forEach(p=>t+=p||0);
+  let metaParts=[wzLabels[0]];
+  if(wzLabels[2]&&wzLabels[2]!=='—') metaParts.push(wzLabels[2]);
+  if(wzLabels[3]&&wzLabels[3]!=='—'&&wzPrices[3]>0) metaParts.push(wzLabels[3]);
+  document.getElementById('checkout-meta').textContent=metaParts.filter(Boolean).join(' · ');
+  document.getElementById('checkout-price').textContent='$'+t;
+  let rows='';
+  [0,1,2,3].forEach(i=>{
+    if(wzPrices[i]>0) rows+=`<div class="sum-row"><span>${wzLabels[i]}</span><span>+$${wzPrices[i]}</span></div>`;
+  });
+  if(wzLabels[1]==='Receta pendiente') rows+=`<div class="sum-row" style="color:#c9a96e"><span>⚠️ Receta pendiente</span><span>—</span></div>`;
+  document.getElementById('co-rows').innerHTML=rows;
+  document.getElementById('co-total').textContent='$'+t;
+  document.getElementById('cartBadge').classList.add('visible');
+  goTo('checkout');
+}
+
+function wzReset(){
+  wzStep=0; wzSel={0:null,1:null,2:null,3:null};
+  wzPrices={0:0,1:0,2:0,3:0}; wzLabels={0:'',1:'',2:'',3:''};
+  document.querySelectorAll('.vd-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('.vd-tooltip').forEach(t=>t.classList.remove('open'));
+  document.getElementById('wz-total').textContent='$95';
+  document.getElementById('running-price').textContent='$95';
+  wzShowStep();
+}
+
+// Re-bind vdSelect to tracked version
+// (can't reassign const, so patch onclick via delegation already done via vdSelectTracked calls)
+
+// Color dots
+document.querySelectorAll('.color-dot').forEach(dot=>{
+  dot.addEventListener('click',()=>{
+    document.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('active'));
+    dot.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
